@@ -1,5 +1,4 @@
 const JoiRequire = require('joi');
-
 const dateJoi= require('@joi/date');
 const Joi = JoiRequire.extend(dateJoi)
 
@@ -10,7 +9,7 @@ module.exports = async (req,res,next)=>{
 
            cor: Joi.string().required(),
 
-           ano: Joi.date().format('YYYY').min('1950-01-01').max('2022-12-31').required(),
+           ano: Joi.number().min(1950).max(2021).required(),
 
            acessorios: Joi.array().items(Joi.object().required()).unique().required(),
 
