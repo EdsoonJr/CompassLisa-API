@@ -37,13 +37,12 @@ class CarController{
             if(!oneCar){
                 return res.status(404).json({ message: 'Veículo Não Encontrado' });
             }
-
             await carService.deleteOne({_id:id})
             return res.status(204).json()
 
         } catch (error) {
-            res.status(500).json({
-                'message': 'Bad request',
+            res.status(400).json({
+                'message': 'Id Inválido',
                 'details': [{ 'message': error }]
             })
             
