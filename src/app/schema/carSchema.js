@@ -13,7 +13,7 @@ const CarSchema = mongoose.Schema({
     },
 
     ano:{
-        type: Number,
+        type: String,
         required:true
     },
 
