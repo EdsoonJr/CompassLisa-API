@@ -9,6 +9,16 @@ class CarService{
       const allCars = await carRepository.find(payload);
       return allCars;
     }
+
+    async findOne(payload){
+      const oneCar = await carRepository.findOne(payload);
+      return oneCar;
+    }
+
+    async deleteOne(payload){
+      const deletedCar = await carRepository.deleteOne(payload)
+      return deletedCar
+    }
 }
 
 module.exports = new CarService;
