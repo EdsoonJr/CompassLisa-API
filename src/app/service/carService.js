@@ -14,7 +14,7 @@ class CarService{
       const oneCar = await carRepository.findOne(payload);
       return oneCar;
     }
-
+    
     async deleteOne(payload){
       const deletedCar = await carRepository.deleteOne(payload)
       return deletedCar
