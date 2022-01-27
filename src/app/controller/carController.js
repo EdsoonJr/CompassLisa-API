@@ -27,16 +27,36 @@ class CarController{
         }
     }
 
+    async updateCar(req,res){
+        const id = req.params.id;
+        const reqCar = req.body
+
+        try {
+            const oneCar = await carService.findOne({_id:id});
+            if(!oneCar){
+                return res.status(404).json({ message: 'Veículo Não Encontrado' });
+            }
+
+            const  updatedCar = await carService.updateOne(id,reqCar);
+            res.status(200).json(updatedCar);
+        } catch (error) {
+            return res.status(400).json({
+                'message': 'bad request',
+                'details': [{ 'message': error.message }]
+            })
+            
+        }
+    }
+
     async deleteCar(req,res){
         try {
             const id = req.params.id 
-
-
             const oneCar = await carService.findOne({_id:id})
 
             if(!oneCar){
                 return res.status(404).json({ message: 'Veículo Não Encontrado' });
             }
+
             await carService.deleteOne({_id:id})
             return res.status(204).json()
 
@@ -44,20 +64,19 @@ class CarController{
             res.status(400).json({
                 'message': 'Id Inválido',
                 'details': [{ 'message': error }]
-            })
-            
+            })   
         }
     }
 
     async findOneCar(req,res){
         try {
             const id = req.params.id
-
             const oneCar = await carService.findOne({_id:id})
             
             if(!oneCar){
                 res.status(404).json({message: "Veículo Não encontrado"})
             }
+            
             return res.status(200).json({"Veículo":oneCar});
         } catch (error) {
             res.status(500).json({

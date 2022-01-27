@@ -17,5 +17,11 @@ class CarRepository {
         return carSchema.deleteOne(payload)
     }
 
+    async updateOne(id,payload){
+        await carSchema.updateOne({_id:id},payload);
+        return carSchema.findOne({_id:id});
+
+    }
+
 }
 module.exports = new CarRepository;
