@@ -16,10 +16,10 @@ class CarController{
             const modelo = req.query.modelo
             if(modelo){
                 const queryCar = await carService.find({modelo:{$regex:modelo,$options:"i"}});
-                return res.status(200).json({"Veículo":queryCar})
+                return res.status(200).json(queryCar)
             }else{
-            const allCars = await carService.find({});
-            return res.status(200).json({"Veículos":allCars});
+            const allCars = await carService.find();
+            return res.status(200).json(allCars);
             }
             
         } catch (error) {

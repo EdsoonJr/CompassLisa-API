@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
-    "mongoose": "^6.1.8"
+    "mongoose": "^6.1.8",
+    "mongoose-paginate-v2": "^1.5.0"
   },
   "devDependencies": {
     "@joi/date": "^2.1.0",

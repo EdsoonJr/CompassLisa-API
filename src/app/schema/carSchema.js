@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const CarSchema = mongoose.Schema({
   
@@ -29,6 +30,7 @@ const CarSchema = mongoose.Schema({
 
 })
 
+CarSchema.plugin(mongoosePaginate);
 const Car = mongoose.model('Carros', CarSchema);
 
 module.exports = Car;
