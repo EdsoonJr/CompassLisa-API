@@ -1,6 +1,4 @@
-const JoiRequire = require('joi');
-const dateJoi= require('@joi/date');
-const Joi = JoiRequire.extend(dateJoi)
+const Joi = require('joi');
 
 module.exports = async (req,res,next)=>{
     try {

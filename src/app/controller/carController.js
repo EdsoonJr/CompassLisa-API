@@ -4,10 +4,10 @@ const carService = require('../service/carService');
 class CarController{
     async insertCar(req,res){
         try {
-            const newCar = await carService.create(req.body)
-            return res.status(201).json({"Veículo":newCar})
+            const newCar = await carService.create(req.body);
+            return res.status(201).json({"Veículo":newCar});
         } catch (error) {
-            return res.status(500).json({error})
+            return res.status(500).json({error});
         }
     }
 
