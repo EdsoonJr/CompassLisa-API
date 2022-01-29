@@ -13,7 +13,7 @@ const PeopleSchema = mongoose.Schema({
     },
 
     data_nascimento:{
-        type: Date,
+        type: String,
         required:true
     },
 
