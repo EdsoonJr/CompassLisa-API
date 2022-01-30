@@ -20,18 +20,18 @@ class CarRepository {
           };
           const options = {
             page: 1,
-            limit: 4,
+            limit: 5,
             customLabels: myCustomLabels
           };
         return carSchema.paginate(payload,options,{});
     }
 
     async findOne(payload){
-        return carSchema.findOne(payload)
+        return carSchema.findOne(payload);
     }
 
     async deleteOne(payload){
-        return carSchema.deleteOne(payload)
+        return carSchema.deleteOne(payload);
     }
 
     async updateOne(id,payload){

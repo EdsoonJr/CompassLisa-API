@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const PeopleSchema = mongoose.Schema({
   
     nome:{
@@ -34,9 +34,14 @@ const PeopleSchema = mongoose.Schema({
 
     }
 
-
-
 })
+PeopleSchema.set('toJSON', {
+    transform: function (doc, ret) {
+        delete ret.__v;
+    }
+});
+
+PeopleSchema.plugin(mongoosePaginate)
 
 const People = mongoose.model('Peoples', PeopleSchema);
 
