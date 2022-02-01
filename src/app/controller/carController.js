@@ -14,13 +14,8 @@ class CarController{
     }
 
     async findCars(req,res){
-        try {
-            const {modelo} = req.query;
-            if(modelo){
-                const queryCar = await carService.find({modelo:{$regex:modelo,$options:"i"}});
-                return res.status(200).json(queryCar);
-            }
-            const allCars = await carService.find();
+        try { 
+            const allCars = await carService.find(req.query);
             return res.status(200).json(allCars);
             
             

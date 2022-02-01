@@ -14,7 +14,7 @@ class PeopleController{
 
     async getAllPeoples(req,res){
         try {
-            const allPeoples = await peopleService.find();
+            const allPeoples = await peopleService.find(req.query);
             return res.status(200).json(allPeoples);
 
         } catch (error) {
