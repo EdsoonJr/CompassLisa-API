@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 const Joi = require('joi');
 
 module.exports = async (req,res,next)=>{
@@ -13,18 +14,18 @@ module.exports = async (req,res,next)=>{
 
            quantidadePassageiros: Joi.number().integer().required()
 
-        })
+        });
 
-        const { error } = await schema.validate(req.body, { abortEarly: false })
+        const { error } = await schema.validate(req.body, { abortEarly: false });
 
         if (error){
             throw{
                 message:'Bad Request',
                 details: error.details
-            }
+            };
         }
         return next();
     } catch (error) {
          return res.status(400).json(error);
     }
-}
+};

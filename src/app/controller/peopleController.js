@@ -1,4 +1,5 @@
-const peopleService = require('../service/peopleService.js');
+/* eslint-disable class-methods-use-this */
+const peopleService = require('../service/peopleService');
 
 class PeopleController{
     async insertPeople(req,res){

@@ -1,5 +1,5 @@
-const carController = require('../app/controller/peopleController.js');
-const insertPeopleValidation = require('../app/validation/people/insertPeople.js')
+const carController = require('../app/controller/peopleController');
+const insertPeopleValidation = require('../app/validation/people/insertPeople');
 
 
 module.exports = (server, routes, prefix = '/api/v1/people') => {

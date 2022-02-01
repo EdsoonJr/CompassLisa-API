@@ -1,4 +1,6 @@
-const carRepository = require('../repository/carRepository.js')
+/* eslint-disable class-methods-use-this */
+const carRepository = require('../repository/carRepository');
+
 class CarService{
   async create (payload){
     const newCar = await carRepository.create(payload);
@@ -16,8 +18,8 @@ class CarService{
     }
 
     async deleteOne(payload){
-      const deletedCar = await carRepository.deleteOne(payload)
-      return deletedCar
+      const deletedCar = await carRepository.deleteOne(payload);
+      return deletedCar;
     }
 
     async updateOne(id,payload){

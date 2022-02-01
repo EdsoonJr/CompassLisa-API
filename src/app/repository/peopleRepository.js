@@ -1,4 +1,5 @@
-const peopleSchema = require('../schema/peopleSchema.js');
+/* eslint-disable class-methods-use-this */
+const peopleSchema = require('../schema/peopleSchema');
 
 class PeopleRepository{
     async create(payload){

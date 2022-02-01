@@ -1,6 +1,16 @@
+/* eslint-disable no-throw-literal */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
+/* eslint-disable no-redeclare */
+/* eslint-disable block-scoped-var */
+/* eslint-disable radix */
+/* eslint-disable no-inner-declarations */
 
 const JoiRequire = require('joi');
 const dateJoi = require ('@joi/date');
+
 const Joi = JoiRequire.extend(dateJoi);
 
 
@@ -8,38 +18,38 @@ module.exports = async (req,res,next)=>{
   
     try {
         function isValidCPF(cpf) {
-            if (typeof cpf !== "string") return false
-            cpf = cpf.replace(/[\s.-]*/igm, '')
+            if (typeof cpf !== "string") return false;
+            cpf = cpf.replace(/[\s.-]*/igm, '');
             if (
                 !cpf ||
-                cpf.length != 11 ||
-                cpf == "00000000000" ||
-                cpf == "11111111111" ||
-                cpf == "22222222222" ||
-                cpf == "33333333333" ||
-                cpf == "44444444444" ||
-                cpf == "55555555555" ||
-                cpf == "66666666666" ||
-                cpf == "77777777777" ||
-                cpf == "88888888888" ||
-                cpf == "99999999999" 
+                cpf.length !== 11 ||
+                cpf === "00000000000" ||
+                cpf === "11111111111" ||
+                cpf === "22222222222" ||
+                cpf === "33333333333" ||
+                cpf === "44444444444" ||
+                cpf === "55555555555" ||
+                cpf === "66666666666" ||
+                cpf === "77777777777" ||
+                cpf === "88888888888" ||
+                cpf === "99999999999" 
             ) {
-                return false
+                return false;
             }
-            var soma = 0
-            var resto
+            let soma = 0;
+            let resto;
             for (var i = 1; i <= 9; i++) 
-                soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
-            resto = (soma * 10) % 11
-            if ((resto == 10) || (resto == 11))  resto = 0
-            if (resto != parseInt(cpf.substring(9, 10)) ) return false
-            soma = 0
+                soma += parseInt(cpf.substring(i-1, i)) * (11 - i);
+            resto = (soma * 10) % 11;
+            if ((resto === 10) || (resto === 11))  resto = 0;
+            if (resto !== parseInt(cpf.substring(9, 10)) ) return false;
+            soma = 0;
             for (var i = 1; i <= 10; i++) 
-                soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
-            resto = (soma * 10) % 11
-            if ((resto == 10) || (resto == 11))  resto = 0
-            if (resto != parseInt(cpf.substring(10, 11) ) ) return false
-            return true
+                soma += parseInt(cpf.substring(i-1, i)) * (12 - i);
+            resto = (soma * 10) % 11;
+            if ((resto === 10) || (resto === 11))  resto = 0;
+            if (resto !== parseInt(cpf.substring(10, 11) ) ) return false;
+            return true;
         }
        
         const schema = Joi.object({
@@ -55,15 +65,15 @@ module.exports = async (req,res,next)=>{
 
            habilitado: Joi.string().required()
 
-        })
+        });
 
-        const { error } = await schema.validate(req.body, { abortEarly: false })
+        const { error } = await schema.validate(req.body, { abortEarly: false });
     
         if (error){
-            throw{
+            throw   {
                 message:'Bad Request',
                 details: error.details
-            }
+            };
         }
 
         if(!isValidCPF(req.body.cpf)){
@@ -78,4 +88,4 @@ module.exports = async (req,res,next)=>{
     } catch (error) {
          return res.status(400).json(error);
     }
-}
+};

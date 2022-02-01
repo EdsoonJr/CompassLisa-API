@@ -1,4 +1,5 @@
-const carSchema = require('../schema/carSchema.js');
+/* eslint-disable class-methods-use-this */
+const carSchema = require('../schema/carSchema');
 
 class CarRepository {
     async create(payload){

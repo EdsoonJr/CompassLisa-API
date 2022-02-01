@@ -1,6 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
+const cors = require('cors');
 const router = require('./routes');
-const cors = require('cors')
 require('./infra/database/mongo/index');
 
 class App {
@@ -12,7 +13,7 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
-    this.server.use(cors())
+    this.server.use(cors());
   }
 
   routes() {

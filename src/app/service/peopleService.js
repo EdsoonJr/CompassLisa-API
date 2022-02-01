@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 const peopleRepository = require('../repository/peopleRepository');
 const PeopleRepository = require('../repository/peopleRepository');
 

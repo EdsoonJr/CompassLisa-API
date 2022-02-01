@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
+
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
@@ -31,7 +34,8 @@ const CarSchema = mongoose.Schema({
 });
 
 CarSchema.set('toJSON', {
-    transform: function (doc, ret) {
+    transform (doc, ret) {
+     
         delete ret.__v;
     }
 });
