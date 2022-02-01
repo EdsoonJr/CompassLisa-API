@@ -29,12 +29,12 @@ class PeopleController{
             const onePeople = await peopleService.findOne({_id:id});
             
             if(!onePeople){
-                res.status(404).json({message: "Pessoa Não encontrada"});
+                return res.status(404).json({message: "Pessoa Não encontrada"});
             }
             
             return res.status(200).json({"Pessoa":onePeople});
         } catch (error) {
-            res.status(500).json({error});
+           return res.status(500).json({error});
             
         }
     }
@@ -50,7 +50,7 @@ class PeopleController{
             }
     
             const  updatedPeople = await peopleService.updateOne(id,reqPeople);
-            res.status(200).json(updatedPeople);
+            return res.status(200).json(updatedPeople);
         } catch (error) {
             return res.status(400).json({error});
             
@@ -71,7 +71,7 @@ class PeopleController{
             return res.status(204).json();
 
         } catch (error) {
-            res.status(500).json({error});   
+           return res.status(500).json({error});   
         }
     }
 

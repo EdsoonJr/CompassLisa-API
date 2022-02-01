@@ -25,7 +25,7 @@ class CarController{
             
             
         } catch (error) {
-            res.status(500).json(error);
+            return res.status(500).json(error);
         }
     }
 
@@ -40,7 +40,7 @@ class CarController{
             }
 
             const  updatedCar = await carService.updateOne(id,reqCar);
-            res.status(200).json(updatedCar);
+            return res.status(200).json(updatedCar);
         } catch (error) {
             return res.status(400).json({
                 'message': 'bad request',
@@ -63,7 +63,7 @@ class CarController{
             return res.status(204).json();
 
         } catch (error) {
-            res.status(400).json({
+            return res.status(400).json({
                 'message': 'Id Inválido',
                 'details': [{ 'message': error }]
             });   
@@ -76,15 +76,12 @@ class CarController{
             const oneCar = await carService.findOne({_id:id});
             
             if(!oneCar){
-                res.status(404).json({message: "Veículo Não encontrado"});
+               return res.status(404).json({message: "Veículo Não encontrado"});
             }
             
             return res.status(200).json({"Veículo":oneCar});
         } catch (error) {
-            res.status(500).json({
-                'message': 'Bad request',
-                'details': [{ 'message': error }]
-            });
+           return res.status(500).json(error);
             
         }
     }

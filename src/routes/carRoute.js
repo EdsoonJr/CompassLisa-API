@@ -2,6 +2,8 @@ const carController = require('../app/controller/carController');
 const validationInsertCar = require('../app/validation/car/insertCar');
 const validationDeleteCar = require('../app/validation/car/deleteCar');
 
+
+
 module.exports = (server, routes, prefix = '/api/v1/car') => {
     routes.post('/',validationInsertCar,carController.insertCar);
     routes.get('/',carController.findCars);
