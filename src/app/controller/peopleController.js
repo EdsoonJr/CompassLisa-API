@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 const peopleService = require('../service/peopleService');
 
@@ -19,6 +20,58 @@ class PeopleController{
         } catch (error) {
             return res.status(500).json({error});
             
+        }
+    }
+
+    async findOnePeople(req,res){
+        try {
+            const {id} = req.params;
+            const onePeople = await peopleService.findOne({_id:id});
+            
+            if(!onePeople){
+                res.status(404).json({message: "Pessoa Não encontrada"});
+            }
+            
+            return res.status(200).json({"Pessoa":onePeople});
+        } catch (error) {
+            res.status(500).json({error});
+            
+        }
+    }
+
+    async updatePeople(req,res){
+        const {id} = req.params;
+        const reqPeople = req.body;
+    
+        try {
+            const onePeople = await peopleService.findOne({_id:id});
+            if(!onePeople){
+                return res.status(404).json({ message: 'Pessoas Não Encontrada' });
+            }
+    
+            const  updatedPeople = await peopleService.updateOne(id,reqPeople);
+            res.status(200).json(updatedPeople);
+        } catch (error) {
+            return res.status(400).json({error});
+            
+        }
+    }
+
+
+    async deletePeople(req,res){
+        try {
+            const {id} = req.params; 
+            const onePeople = await peopleService.findOne({_id:id});
+
+            if(!onePeople){
+                return res.status(404).json({ message: 'Pessoa Não Encontrada' });
+            }
+
+            await peopleService.deleteOne({_id:id});
+            return res.status(204).json();
+
+        } catch (error) {
+            res.status(500).json({error});   
         }
     }
 

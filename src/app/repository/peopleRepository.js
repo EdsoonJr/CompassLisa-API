@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 const peopleSchema = require('../schema/peopleSchema');
 
@@ -26,6 +27,20 @@ class PeopleRepository{
           };
         return peopleSchema.paginate(payload,options,{});
     }
+
+    async findOne(payload){
+      return peopleSchema.findOne(payload);
+  }
+
+    async updateOne(id,payload){
+      await peopleSchema.updateOne({_id:id},payload);
+      return peopleSchema.findOne({_id:id});
+
+  }
+
+  async deleteOne(payload){
+    return peopleSchema.deleteOne(payload);
+}
 }
 
 module.exports = new PeopleRepository;
