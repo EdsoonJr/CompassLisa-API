@@ -9,7 +9,10 @@ class CarController{
             const newCar = await carService.create(req.body);
             return res.status(201).json({"Veículo":newCar});
         } catch (error) {
-            return res.status(500).json({error});
+            return res.status(500).json({
+                'message': 'bad request',
+                'details': [{ 'message': error.message }]
+            });
         }
     }
 
@@ -20,7 +23,10 @@ class CarController{
             
             
         } catch (error) {
-            return res.status(500).json(error);
+            return res.status(500).json({
+                'message': 'bad request',
+                'details': [{ 'message': error.message }]
+            });
         }
     }
 
@@ -60,7 +66,7 @@ class CarController{
         } catch (error) {
             return res.status(400).json({
                 'message': 'Id Inválido',
-                'details': [{ 'message': error }]
+                'details': [{ 'message': error.message }]
             });   
         }
     }
@@ -76,7 +82,10 @@ class CarController{
             
             return res.status(200).json({"Veículo":oneCar});
         } catch (error) {
-           return res.status(500).json(error);
+           return res.status(500).json({ 
+            'message': 'bad request',
+            'details': [{ 'message': error.message }]
+           });
             
         }
     }

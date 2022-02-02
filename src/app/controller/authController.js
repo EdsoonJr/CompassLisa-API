@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcryptjs');
-const gerarToken = require('../utils/authentication');
+const gerarToken = require('../utils/authenticate/gerarToken');
 const authService = require('../service/authService');
 
 
@@ -20,7 +20,7 @@ class AuthController{
             }
 
             if(!await bcrypt.compare(senha, authUser.senha)){
-                return res.status(400).send({erro:'Senha Inválida'});
+                return res.status(400).send({error:'Senha Inválida'});
             }
 
             authUser.senha = undefined;
