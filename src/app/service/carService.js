@@ -17,13 +17,13 @@ class CarService{
       return oneCar;
     }
 
-    async deleteOne(payload){
-      const deletedCar = await carRepository.deleteOne(payload);
-      return deletedCar;
+    async delete(payload){
+      return  carRepository.delete(payload);
+      
     }
 
-    async updateOne(id,payload){
-      const updatedCar = await carRepository.updateOne(id,payload);
+    async update(id,payload){
+      const updatedCar = await carRepository.update(id,payload);
       return updatedCar;
     }
 }

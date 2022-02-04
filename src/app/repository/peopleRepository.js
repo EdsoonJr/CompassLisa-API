@@ -32,13 +32,13 @@ class PeopleRepository{
       return peopleSchema.findOne(payload);
   }
 
-    async updateOne(id,payload){
+    async update(id,payload){
       await peopleSchema.updateOne({_id:id},payload);
       return peopleSchema.findOne({_id:id});
 
   }
 
-  async deleteOne(payload){
+  async delete(payload){
     return peopleSchema.deleteOne(payload);
 }
 }

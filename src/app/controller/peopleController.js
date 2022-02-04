@@ -58,7 +58,7 @@ class PeopleController{
                 return res.status(404).json({ message: 'Pessoas Não Encontrada' });
             }
     
-            const  updatedPeople = await peopleService.updateOne(id,reqPeople);
+            const  updatedPeople = await peopleService.update(id,reqPeople);
             return res.status(200).json(updatedPeople);
         } catch (error) {
             return res.status(400).json({ 
@@ -79,7 +79,7 @@ class PeopleController{
                 return res.status(404).json({ message: 'Pessoa Não Encontrada' });
             }
 
-            await peopleService.deleteOne({_id:id});
+            await peopleService.delete({_id:id});
             return res.status(204).json();
 
         } catch (error) {

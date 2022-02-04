@@ -40,7 +40,7 @@ class CarController{
                 return res.status(404).json({ message: 'Veículo Não Encontrado' });
             }
 
-            const  updatedCar = await carService.updateOne(id,reqCar);
+            const  updatedCar = await carService.update(id,reqCar);
             return res.status(200).json(updatedCar);
         } catch (error) {
             return res.status(400).json({
@@ -60,7 +60,7 @@ class CarController{
                 return res.status(404).json({ message: 'Veículo Não Encontrado' });
             }
 
-            await carService.deleteOne({_id:id});
+            await carService.delete({_id:id});
             return res.status(204).json();
 
         } catch (error) {

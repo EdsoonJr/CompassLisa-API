@@ -18,14 +18,14 @@ class PeopleService {
         return onePeople;
       }
 
-    async updateOne(id,payload){
-        const updatedPeople = await peopleRepository.updateOne(id,payload);
+    async update(id,payload){
+        const updatedPeople = await peopleRepository.update(id,payload);
         return updatedPeople;
       }
     
-      async deleteOne(payload){
-        const deletedPeople = await peopleRepository.deleteOne(payload);
-        return deletedPeople;
+      async delete(payload){
+        return peopleRepository.delete(payload);
+        
       }
     
 

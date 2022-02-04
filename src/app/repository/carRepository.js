@@ -31,11 +31,11 @@ class CarRepository {
         return carSchema.findOne(payload);
     }
 
-    async deleteOne(payload){
+    async delete(payload){
         return carSchema.deleteOne(payload);
     }
 
-    async updateOne(id,payload){
+    async update(id,payload){
         await carSchema.updateOne({_id:id},payload);
         return carSchema.findOne({_id:id});
 
