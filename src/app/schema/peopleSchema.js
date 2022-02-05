@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
@@ -9,12 +10,16 @@ const PeopleSchema = mongoose.Schema({
   
     nome:{
         type: String,
-        required: true
+        required: true,
+        min: 3
     },
 
     cpf:{
         type: String,
-        required: true
+        required: true,
+        min: 11,
+        max: 11,
+        unique:true
     },
 
     data_nascimento:{
@@ -24,12 +29,17 @@ const PeopleSchema = mongoose.Schema({
 
     email:{
         type: String,
-        required: true
+        trim: true,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required',
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
 
     senha:{
         type: String,
         required: true,
+        min: 6,
         select: false
     },
 

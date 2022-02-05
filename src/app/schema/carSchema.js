@@ -13,12 +13,14 @@ const CarSchema = mongoose.Schema({
 
     cor: {
         type: String,
-        required: true
+        required: true,
     },
 
     ano: {
         type: String,
-        required: true
+        required: true,
+        min: 1950,
+        max: 2022
     },
 
     acessorios: {
