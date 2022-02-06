@@ -17,9 +17,9 @@ const PeopleSchema = mongoose.Schema({
     cpf:{
         type: String,
         required: true,
-        min: 11,
-        max: 11,
-        unique:true
+        minLength:11,
+		maxLength: 11,
+		unique: true,
     },
 
     data_nascimento:{
@@ -39,7 +39,7 @@ const PeopleSchema = mongoose.Schema({
     senha:{
         type: String,
         required: true,
-        min: 6,
+        minLength: 6,
         select: false
     },
 

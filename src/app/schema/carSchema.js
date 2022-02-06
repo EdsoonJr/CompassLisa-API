@@ -30,7 +30,8 @@ const CarSchema = mongoose.Schema({
 
     quantidadePassageiros: {
         type: Number,
-        required: true
+        minLength: 1,
+        required: true,
     }
 
 });
