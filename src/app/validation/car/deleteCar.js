@@ -1,4 +1,5 @@
-/* eslint-disable no-throw-literal */
+
+
 const Joi = require('joi');
 
 module.exports = async (req, res, next) => {  
@@ -7,10 +8,10 @@ module.exports = async (req, res, next) => {
 
     if (error){
       throw {
-          message:'Bad Request',
-          details: error.details
+        message:'Bad Request',
+        details: error.details
       };
-  }
+    }
     
     return next();
   } catch (error) {

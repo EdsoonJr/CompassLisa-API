@@ -1,18 +1,10 @@
-/* eslint-disable no-throw-literal */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-var */
-/* eslint-disable vars-on-top */
-/* eslint-disable no-redeclare */
-/* eslint-disable block-scoped-var */
-/* eslint-disable radix */
-/* eslint-disable no-inner-declarations */
+
 
 
 const Joi = require('joi').extend(require('@joi/date'));
 
 
-module.exports = async (req,res,next)=>{
+module.exports = async (req, res, next)=>{
   
     try {
         function isValidCPF(cpf) {
