@@ -27,6 +27,13 @@
     "no-throw-literal":"off",
     "consistent-return":"off",
     "no-useless-escape":"off",
+    "no-redeclare":"off" ,
+    "radix":"off" ,
+    "no-plusplus":"off" ,
+    "no-var":"off",
+    "block-scoped-var":"off",
+    "vars-on-top":"off",
+    "no-inner-declarations":"off",
     "no-console": "off"
         
     }
