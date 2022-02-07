@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+
 const carRepository = require('../repository/carRepository');
 
 class CarService{
@@ -7,25 +7,25 @@ class CarService{
     return newCar;
   }
 
-    async find(payload){
-      const allCars = await carRepository.find(payload);
-      return allCars;
-    }
+  async find(payload){
+    const allCars = await carRepository.find(payload);
+    return allCars;
+  }
 
-    async findOne(payload){
-      const oneCar = await carRepository.findOne(payload);
-      return oneCar;
-    }
+  async findOne(payload){
+    const oneCar = await carRepository.findOne(payload);
+    return oneCar;
+  }
 
-    async deleteOne(payload){
-      const deletedCar = await carRepository.deleteOne(payload);
-      return deletedCar;
-    }
+  async delete(payload){
+    return  carRepository.delete(payload);
+      
+  }
 
-    async updateOne(id,payload){
-      const updatedCar = await carRepository.updateOne(id,payload);
-      return updatedCar;
-    }
+  async update(id, payload){
+    const updatedCar = await carRepository.update(id, payload);
+    return updatedCar;
+  }
 }
 
 module.exports = new CarService;

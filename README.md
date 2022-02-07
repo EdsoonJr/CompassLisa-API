@@ -30,15 +30,15 @@ O projeto está sendo desenvolvido utilizando as seguintes tecnologias:
 $ git clone https://github.com/EdsoonJr/CompassLisa-API.git
 
 # 2. Acessar a pasta do projeto
-$ cd compass-grupo02
+$ cd CompassLisa-API
 
 # 3. Instale as dependências
 $ npm install
 
-# 4. Executar a aplicação em modo de desenvolvimento
+# 4. Executar a api em modo de desenvolvimento
 $ npm run dev
 
-# Execute a aplicação em modo de produção
+# 5. Ou Execute a api em modo de produção
 $ npm run start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>

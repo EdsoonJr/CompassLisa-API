@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+
 const mongoose = require('mongoose');
 require('dotenv/config');
 
