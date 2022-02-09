@@ -20,8 +20,8 @@ module.exports = async (req, res, next)=>{
 
     if (error){
       throw{
-        message:'Bad Request',
-        details: error.details
+        'description': error.details[0].path[0],
+        'name':error.message
       };
     }
     return next();
