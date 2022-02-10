@@ -67,7 +67,7 @@ module.exports = async (req, res, next)=>{
     if(!isValidCPF(req.body.cpf)){
       throw {
         'description': 'Bad Request',
-        'name': `CPF: Inválido`
+        'name': `Invalid CPF ${req.body.cpf}`
       };
     }
         
