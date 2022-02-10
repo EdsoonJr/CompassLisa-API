@@ -1,10 +1,12 @@
 const peopleRepository = require('../repository/peopleRepository');
 const uniqueCpf = require('../utils/uniques/uniqueCpf');
+const uniqueEmail = require('../utils/uniques/uniqueEmail');
 
 class PeopleService {
   async create(payload){
 
     await uniqueCpf(payload.cpf);
+    await uniqueEmail(payload.email);
     const newPeople = await peopleRepository.create(payload);
     return newPeople;
   }
