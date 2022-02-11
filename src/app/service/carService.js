@@ -26,6 +26,11 @@ class CarService{
     const updatedCar = await carRepository.update(id, payload);
     return updatedCar;
   }
+
+  async updateAcessory(id, acessorioId, payload){
+    const updatedAcessory = await carRepository.updateAcessory(id, acessorioId, payload);
+    return updatedAcessory;
+  }
 }
 
 module.exports = new CarService;

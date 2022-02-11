@@ -1,4 +1,3 @@
-
 const carService = require('../service/carService');
 
 
@@ -47,6 +46,21 @@ class CarController{
         'details': [{ 'message': error.message }]
       });
             
+    }
+  }
+
+  async updateAcessory (req, res){
+    const { id, acessorioId } = req.params;
+    const payload  = req.body;
+
+    try {
+      const updatedAcessory = await carService.updateAcessory(id, acessorioId, payload);
+      return res.status(200).json(updatedAcessory);
+    } catch (error) {
+      return res.status(400).json({
+        'message': 'bad request',
+        'details': [{ 'message': error.message }]
+      });
     }
   }
 

@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
@@ -22,10 +20,14 @@ const CarSchema = mongoose.Schema({
     max: 2022
   },
 
-  acessorios: {
-    type: Array,
-    required: true
-  },
+  acessorios: [
+    {
+      descricao: {
+        type: String,
+        required:true
+      }
+    }
+  ],
 
   quantidadePassageiros: {
     type: Number,
