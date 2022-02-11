@@ -22,6 +22,8 @@ class PeopleService {
   }
 
   async update(id, payload){
+    await uniqueCpf(payload.cpf);
+    await uniqueEmail(payload.email);
     const updatedPeople = await peopleRepository.update(id, payload);
     return updatedPeople;
   }
