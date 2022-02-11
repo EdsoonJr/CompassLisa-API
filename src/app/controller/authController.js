@@ -1,10 +1,7 @@
-
-
 const bcrypt = require('bcryptjs');
 const gerarToken = require('../utils/authenticate/gerarToken');
 const authService = require('../service/authService');
-
-
+const ErrorsMessages = require('../utils/Errors/ErrorsMessages');
 
 class AuthController{
 
@@ -16,11 +13,11 @@ class AuthController{
       const authUser = await authService.findAuthenticate({email});
 
       if(!authUser){
-        return res.status(400).send({error:'Usuário não Encontrado'});
+        return ErrorsMessages.notFound(res, 'User Not Found');
       }
 
       if(!await bcrypt.compare(senha, authUser.senha)){
-        return res.status(400).send({error:'Senha Inválida'});
+        return ErrorsMessages.invalidPassWd(res, 'Invalid Password');
       }
 
       authUser.senha = undefined;

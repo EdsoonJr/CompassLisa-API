@@ -1,4 +1,5 @@
 const rentalService = require('../service/rentalService');
+const ErrorsMessages = require('../utils/Errors/ErrorsMessages');
 
 class RentalController{
     
@@ -7,10 +8,7 @@ class RentalController{
       const newRental = await rentalService.create(req.body);
       return res.status(201).json({"Locadora":newRental});
     } catch (error) {
-      return res.status(400).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 }
