@@ -56,6 +56,22 @@ class RentalController{
     }
   }
 
+  async deleteRental(req, res){
+    try {
+      const {id} = req.params; 
+      const oneRental = await rentalService.findOne({_id:id});
+
+      if(!oneRental){
+        return ErrorsMessages.notFound(res, 'Rental Not Found');
+      }
+
+      await rentalService.delete({_id:id});
+      return res.status(204).json();
+
+    } catch (error) {
+      return ErrorsMessages.badRequest(res, error.message);
+    }
+  }
   
 
 }

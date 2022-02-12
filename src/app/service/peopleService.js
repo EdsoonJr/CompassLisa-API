@@ -29,8 +29,7 @@ class PeopleService {
   }
     
   async delete(payload){
-    return peopleRepository.delete(payload);
-        
+    return peopleRepository.delete(payload);    
   }
     
 

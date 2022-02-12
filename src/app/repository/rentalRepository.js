@@ -37,6 +37,10 @@ class RentalRepository{
 
   }
 
+  async delete(payload){
+    return rentalSchema.deleteOne(payload);
+  }
+
 }
 
 module.exports = new RentalRepository;
