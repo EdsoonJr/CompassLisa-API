@@ -17,6 +17,11 @@ class RentalService{
     const oneRental = await rentalRepository.findOne(payload);
     return oneRental;
   }
+
+  async update(id, payload){
+    const updatedPeople = await rentalRepository.update(id, payload);
+    return updatedPeople;
+  }
 }
 
 module.exports = new RentalService;

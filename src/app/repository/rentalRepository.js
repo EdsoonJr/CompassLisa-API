@@ -31,6 +31,12 @@ class RentalRepository{
     return  rentalSchema.findOne(payload);
   }
 
+  async update(id, payload){
+    await rentalSchema.updateOne({_id:id}, payload);
+    return rentalSchema.findOne({_id:id});
+
+  }
+
 }
 
 module.exports = new RentalRepository;

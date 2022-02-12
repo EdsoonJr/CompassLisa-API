@@ -39,6 +39,23 @@ class RentalController{
     }
   }
 
+  async updateRental(req, res){
+    const {id} = req.params;
+    const reqRental = req.body;
+    
+    try {
+      const oneRental = await rentalService.findOne({_id:id});
+      if(!oneRental){
+        return ErrorsMessages.notFound(res, 'Rental Not Found');
+      }
+      const  updatedPeople = await rentalService.update(id, reqRental);
+      return res.status(200).json(updatedPeople);
+
+    } catch (error) {
+      return ErrorsMessages.badRequest(res, error.message);    
+    }
+  }
+
   
 
 }
