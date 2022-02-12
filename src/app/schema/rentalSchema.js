@@ -29,13 +29,36 @@ const RentalSchema = mongoose.Schema({
         maxLength: 8,
         required:true},
 
-      number: {
-        type:String, 
-        required:true},
+      logradouro:{
+        type:String,
+        required:true
+      },
 
       complemento: {
-        type: String},
+        type: String
+      },
 
+      bairro:{
+        type: String,
+        required:true
+      },
+
+      number: {
+        type:String, 
+        required:true
+      },
+
+      localidade:{
+        type:String,
+        required:true
+      },
+
+      uf:{
+        type: String,
+        minLength: 2,
+        required:true
+      },
+    
       isFilial:{
         type: Boolean, 
         required:true,
