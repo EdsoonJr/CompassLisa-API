@@ -27,6 +27,10 @@ class RentalRepository{
     return rentalSchema.paginate(payload, options, {});
   }
 
+  async findOne(payload){
+    return  rentalSchema.findOne(payload);
+  }
+
 }
 
 module.exports = new RentalRepository;

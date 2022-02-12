@@ -23,6 +23,24 @@ class RentalController{
     }
 
   }
+
+  async findOneRental(req, res){
+    try {
+      const {id} = req.params;
+      const oneRental = await rentalService.findOne({_id:id});
+            
+      if(!oneRental){
+        return ErrorsMessages.notFound(res, 'Rental Not Found');
+      }
+            
+      return res.status(200).json({"Pessoa":oneRental});
+    } catch (error) {
+      return ErrorsMessages.badRequest(res, error.message);      
+    }
+  }
+
+  
+
 }
 
 module.exports = new RentalController;
