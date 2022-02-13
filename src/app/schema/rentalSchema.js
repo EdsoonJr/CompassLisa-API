@@ -25,9 +25,9 @@ const RentalSchema = mongoose.Schema({
   endereco:[
     {
       cep:{type: String,
-        minLength:8,
-        maxLength: 8,
-        required:true},
+        unique:true,
+        required:true
+      },
 
       logradouro:{
         type:String,
@@ -35,7 +35,8 @@ const RentalSchema = mongoose.Schema({
       },
 
       complemento: {
-        type: String
+        type: String,
+        required:false
       },
 
       bairro:{
@@ -62,7 +63,9 @@ const RentalSchema = mongoose.Schema({
       isFilial:{
         type: Boolean, 
         required:true,
-        default:false}
+        default:false},
+
+      _id: false
 
     }
   ]

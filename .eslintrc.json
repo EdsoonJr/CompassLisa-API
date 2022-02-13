@@ -34,7 +34,9 @@
     "block-scoped-var":"off",
     "vars-on-top":"off",
     "no-inner-declarations":"off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-await-in-loop" :"off",
+    "no-shadow" :"off"
         
     }
 }

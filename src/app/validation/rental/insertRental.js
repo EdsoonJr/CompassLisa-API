@@ -1,23 +1,22 @@
-
 const Joi = require('joi');
 
 module.exports = async (req, res, next)=>{
   try {
     const schema = Joi.object({
-      nome: Joi.string().min(3).required(),
+      nome: Joi.string().trim().min(3).required(),
 
-      cnpj: Joi.string().max(14).min(14).required(),
+      cnpj: Joi.string().trim().max(14).min(14).required(),
 
       atividades: Joi.string().required(),
 
       endereco: Joi.array().unique().items({
-        cep: Joi.string().required(),
-        logradouro: Joi.string().required(),
+        cep: Joi.string().min(8).max(8).required(),
+        logradouro: Joi.string(),
         complemento: Joi.string(),
-        bairro: Joi.string().required(),
-        number: Joi.string().required(),
-        localidade: Joi.string().required(),
-        uf: Joi.string().required(),
+        bairro: Joi.string(),
+        number: Joi.string().min(1).trim().required(),
+        localidade: Joi.string(),
+        uf: Joi.string(),
         isFilial: Joi.boolean().required(),
       }).min(1),
 
