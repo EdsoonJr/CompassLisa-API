@@ -1,5 +1,7 @@
 
 const Joi = require('joi').extend(require('@joi/date'));
+const BadRequest = require('../../utils/Errors/BadRequest');
+
 
 
 module.exports = async (req, res, next)=>{
@@ -45,7 +47,13 @@ module.exports = async (req, res, next)=>{
 
       data_nascimento: Joi.date().format('DD/MM/YYYY').less('01-01-2004').max('now'),
 
-      cpf: Joi.string().min(11).max(11),
+      cpf: Joi.string().min(11).max(11).custom((value)=>{
+        if(!isValidCPF(value)){
+          throw new BadRequest(`Invalid CPF ${value}`);
+        }else{
+          return true;
+        }
+      }),
 
       email: Joi.string().email(),
 
@@ -64,12 +72,6 @@ module.exports = async (req, res, next)=>{
       };
     }
 
-    if(!isValidCPF(req.body.cpf)){
-      throw {
-        'description': 'Bad Request',
-        'name': `Invalid CPF ${req.body.cpf}`
-      };
-    }
         
 
     return next();
