@@ -36,7 +36,8 @@
     "no-inner-declarations":"off",
     "no-console": "off",
     "no-await-in-loop" :"off",
-    "no-shadow" :"off"
+    "no-shadow" :"off",
+    "no-unused-expressions": "off"
         
     }
 }

@@ -45,7 +45,7 @@ module.exports = async (req, res, next)=>{
 
       data_nascimento: Joi.date().format('DD/MM/YYYY').less('01-01-2004').max('now').required(),
 
-      cpf: Joi.string().required(),
+      cpf: Joi.string().min(11).max(11).required(),
 
       email: Joi.string().email().required(),
 
