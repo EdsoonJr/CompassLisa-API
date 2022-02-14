@@ -1,6 +1,6 @@
 const carController = require('../app/controller/carController');
 const validateInsertCar = require('../app/validation/car/insertCar');
-const validateIdCar = require('../app/validation/car/idCar');
+const validateIdCar = require('../app/validation/id/id');
 const validatePutCar = require('../app/validation/car/putCar');
 
 

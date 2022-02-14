@@ -1,12 +1,13 @@
 const rentalController = require('../app/controller/rentalController');
-const insertRentalVali = require('../app/validation/rental/insertRental');
+const validateInsertRental = require('../app/validation/rental/insertRental');
+const validateIdRental = require('../app/validation/id/id');
 
 module.exports = (server, routes, prefix = '/api/v1/rental') => {
-  routes.post('/', insertRentalVali, rentalController.insertRental);
+  routes.post('/', validateInsertRental, rentalController.insertRental);
   routes.get('/', rentalController.getAllRentals);
-  routes.get('/:id', rentalController.findOneRental);
-  routes.put('/:id', rentalController.updateRental);
-  routes.delete('/:id', rentalController.deleteRental);
+  routes.get('/:id', validateIdRental, rentalController.findOneRental);
+  routes.put('/:id', validateIdRental, rentalController.updateRental);
+  routes.delete('/:id', validateIdRental, rentalController.deleteRental);
   server.use(prefix, routes);
   
 };
