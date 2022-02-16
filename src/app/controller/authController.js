@@ -22,7 +22,7 @@ class AuthController{
 
       authUser.senha = undefined;
 
-      res.send({
+      return res.send({
         authUser,
         token: gerarToken({ id: authUser.id })
       });    
