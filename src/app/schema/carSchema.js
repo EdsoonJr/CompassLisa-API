@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const CarSchema = mongoose.Schema({
-
   modelo: {
     type: String,
     required: true
@@ -10,7 +9,7 @@ const CarSchema = mongoose.Schema({
 
   cor: {
     type: String,
-    required: true,
+    required: true
   },
 
   ano: {
@@ -24,7 +23,7 @@ const CarSchema = mongoose.Schema({
     {
       descricao: {
         type: String,
-        required:true
+        required: true
       }
     }
   ],
@@ -32,14 +31,12 @@ const CarSchema = mongoose.Schema({
   quantidadePassageiros: {
     type: Number,
     minLength: 1,
-    required: true,
+    required: true
   }
-
 });
 
 CarSchema.set('toJSON', {
-  transform (doc, ret) {
-     
+  transform(doc, ret) {
     delete ret.__v;
   }
 });

@@ -5,5 +5,5 @@ class BadRequest extends Error {
     this.message = message;
   }
 }
-  
+
 module.exports = BadRequest;

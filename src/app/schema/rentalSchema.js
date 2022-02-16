@@ -2,77 +2,72 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const RentalSchema = mongoose.Schema({
-
-  nome:{
+  nome: {
     type: String,
     required: true,
     min: 3
   },
 
-  cnpj:{
+  cnpj: {
     type: String,
     required: true,
-    minLength:14,
+    minLength: 14,
     maxLength: 14,
-    unique: true,
+    unique: true
   },
 
-  atividades:{
+  atividades: {
     type: String,
     required: true
   },
 
-  endereco:[
+  endereco: [
     {
-      cep:{type: String,
-        unique:true,
-        required:true
-      },
+      cep: { type: String, unique: true, required: true },
 
-      logradouro:{
-        type:String,
-        required:true
+      logradouro: {
+        type: String,
+        required: true
       },
 
       complemento: {
         type: String,
-        required:false
+        required: false
       },
 
-      bairro:{
+      bairro: {
         type: String,
-        required:true
+        required: true
       },
 
       number: {
-        type:String, 
-        required:true
+        type: String,
+        required: true
       },
 
-      localidade:{
-        type:String,
-        required:true
+      localidade: {
+        type: String,
+        required: true
       },
 
-      uf:{
+      uf: {
         type: String,
         minLength: 2,
-        required:true
+        required: true
       },
-    
-      isFilial:{
-        type: Boolean, 
-        required:true,
-        default:false},
+
+      isFilial: {
+        type: Boolean,
+        required: true,
+        default: false
+      },
 
       _id: false
-
     }
   ]
-
 });
 RentalSchema.set('toJSON', {
-  transform (doc, ret) {
+  transform(doc, ret) {
     delete ret.__v;
   }
 });

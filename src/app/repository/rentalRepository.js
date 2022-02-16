@@ -1,12 +1,11 @@
 const rentalSchema = require('../schema/rentalSchema');
 
-class RentalRepository{
-
-  async create(payload){
-    return  rentalSchema.create(payload);
+class RentalRepository {
+  async create(payload) {
+    return rentalSchema.create(payload);
   }
 
-  async find(payload){
+  async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
       docs: 'Locadoras',
@@ -27,20 +26,18 @@ class RentalRepository{
     return rentalSchema.paginate(payload, options, {});
   }
 
-  async findOne(payload){
-    return  rentalSchema.findOne(payload);
+  async findOne(payload) {
+    return rentalSchema.findOne(payload);
   }
 
-  async update(id, payload){
-    await rentalSchema.updateOne({_id:id}, payload);
-    return rentalSchema.findOne({_id:id});
-
+  async update(id, payload) {
+    await rentalSchema.updateOne({ _id: id }, payload);
+    return rentalSchema.findOne({ _id: id });
   }
 
-  async delete(payload){
+  async delete(payload) {
     return rentalSchema.deleteOne(payload);
   }
-
 }
 
-module.exports = new RentalRepository;
+module.exports = new RentalRepository();

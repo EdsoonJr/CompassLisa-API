@@ -1,7 +1,7 @@
 const carSchema = require('../schema/carSchema');
 
 class CarRepository {
-  async create(payload){
+  async create(payload) {
     return carSchema.create(payload);
   }
 
@@ -26,26 +26,25 @@ class CarRepository {
     return carSchema.paginate(payload, options, {});
   }
 
-  async findOne(payload){
+  async findOne(payload) {
     return carSchema.findOne(payload);
   }
 
-  async delete(payload){
+  async delete(payload) {
     return carSchema.deleteOne(payload);
   }
 
-  async update(id, payload){
-    await carSchema.updateOne({_id:id}, payload);
-    return carSchema.findOne({_id:id});
-
+  async update(id, payload) {
+    await carSchema.updateOne({ _id: id }, payload);
+    return carSchema.findOne({ _id: id });
   }
 
-  async patch(id, acessorioId, payload){
+  async patch(id, acessorioId, payload) {
     return carSchema.findByIdAndUpdate(
-      id, {$set: {'acessorios.$[test].descricao': payload.descricao}},
-      {arrayFilters: [{'test._id': acessorioId}]}
+      id,
+      { $set: { 'acessorios.$[test].descricao': payload.descricao } },
+      { arrayFilters: [{ 'test._id': acessorioId }] }
     );
   }
-
 }
-module.exports = new CarRepository;
+module.exports = new CarRepository();

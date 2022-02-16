@@ -1,60 +1,55 @@
-
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 const bcrypt = require('bcryptjs');
 
 const PeopleSchema = mongoose.Schema({
-  
-  nome:{
+  nome: {
     type: String,
     required: true,
     min: 3
   },
 
-  cpf:{
+  cpf: {
     type: String,
     required: true,
-    minLength:11,
+    minLength: 11,
     maxLength: 11,
-    unique: true,
+    unique: true
   },
 
-  data_nascimento:{
+  data_nascimento: {
     type: String,
-    required:true
+    required: true
   },
 
-  email:{
+  email: {
     type: String,
     trim: true,
     lowercase: true,
     unique: true,
-    required: 'Email address is required',
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    required: true
   },
 
-  senha:{
+  senha: {
     type: String,
     required: true,
     minLength: 6,
     select: false
   },
 
-  habilitado:{
+  habilitado: {
     type: String,
     enum: ['sim', 'não'],
     default: 'sim'
-
   }
-
 });
 PeopleSchema.set('toJSON', {
-  transform (doc, ret) {
+  transform(doc, ret) {
     delete ret.__v;
   }
 });
 
-PeopleSchema.pre('save', async function (next) {
+PeopleSchema.pre('save', async function bcryptfunc(next) {
   const hash = await bcrypt.hash(this.senha, 10);
   this.senha = hash;
   next();
