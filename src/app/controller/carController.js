@@ -44,7 +44,7 @@ class CarController{
     const payload  = req.body;
 
     try {
-      const updatedAcessory = await carService.updateAcessory(id, acessorioId, payload);
+      const updatedAcessory = await carService.patch(id, acessorioId, payload);
       return res.status(200).json(updatedAcessory);
     } catch (error) {
       return ErrorsMessages.badRequest(res, error.message);

@@ -40,11 +40,10 @@ class CarRepository {
 
   }
 
-  async updateAcessory(id, acessorioId, payload){
+  async patch(id, acessorioId, payload){
     return carSchema.findByIdAndUpdate(
-      id,
-      {$set: {'acessorios.$[outer].descricao': payload.descricao}},
-      {arrayFilters: [{'outer._id': acessorioId}]}
+      id, {$set: {'acessorios.$[test].descricao': payload.descricao}},
+      {arrayFilters: [{'test._id': acessorioId}]}
     );
   }
 

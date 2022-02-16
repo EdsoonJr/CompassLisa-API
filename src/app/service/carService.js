@@ -27,8 +27,8 @@ class CarService{
     return updatedCar;
   }
 
-  async updateAcessory(id, acessorioId, payload){
-    const updatedAcessory = await carRepository.updateAcessory(id, acessorioId, payload);
+  async patch(id, acessorioId, payload){
+    const updatedAcessory = await carRepository.patch(id, acessorioId, payload);
     return updatedAcessory;
   }
 }
