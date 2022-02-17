@@ -1,8 +1,10 @@
 const rentalRepository = require('../repository/rentalRepository');
+const uniqueCnpj = require('../utils/uniques/uniqueCnpj');
 const ViaCepApi = require('../utils/viaCep/ViaCepApi');
 
 class RentalService {
   async create(payload, data) {
+    await uniqueCnpj(payload.cnpj);
     const inputCep = payload.endereco;
     for (let index = 0; index < payload.endereco.length; index++) {
       const address = inputCep[index];
@@ -40,6 +42,7 @@ class RentalService {
   }
 
   async update(id, payload) {
+    await uniqueCnpj(payload.cnpj);
     const updatedPeople = await rentalRepository.update(id, payload);
     return updatedPeople;
   }
