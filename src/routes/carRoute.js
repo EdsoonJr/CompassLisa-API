@@ -3,14 +3,14 @@ const validateInsertCar = require('../app/validation/car/insertCar');
 const validateIdCar = require('../app/validation/id/id');
 const validatePutCar = require('../app/validation/car/putCar');
 const validateGetCar = require('../app/validation/car/putCar');
-const token = require('../app/utils/authenticate/tokenBearer');
+const tokenBearer = require('../app/utils/authenticate/tokenBearer');
 
 module.exports = (server, routes, prefix = '/api/v1/car') => {
-  routes.post('/', token, validateInsertCar, carController.insertCar);
-  routes.get('/', validateGetCar, carController.findCars);
-  routes.put('/:id', validateIdCar, validatePutCar, carController.updateCar);
-  routes.delete('/:id', validateIdCar, carController.deleteCar);
-  routes.get('/:id', validateIdCar, carController.findOneCar);
-  routes.patch('/:id/acessorios/:acessorioId', carController.updateAcessory);
+  routes.post('/', tokenBearer, validateInsertCar, carController.insertCar);
+  routes.get('/', tokenBearer, validateGetCar, carController.findCars);
+  routes.put('/:id', tokenBearer, validateIdCar, validatePutCar, carController.updateCar);
+  routes.delete('/:id', tokenBearer, validateIdCar, carController.deleteCar);
+  routes.get('/:id', tokenBearer, validateIdCar, carController.findOneCar);
+  routes.patch('/:id/acessorios/:acessorioId', tokenBearer, carController.updateAcessory);
   server.use(prefix, routes);
 };
