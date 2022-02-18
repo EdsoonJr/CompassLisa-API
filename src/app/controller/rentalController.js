@@ -14,7 +14,7 @@ class RentalController {
   async getAllRentals(req, res) {
     try {
       const allRentals = await rentalService.find(req.query);
-      return res.status(201).json(allRentals);
+      return res.status(200).json(allRentals);
     } catch (error) {
       return ErrorsMessages.badRequest(res, error.message);
     }

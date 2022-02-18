@@ -18,7 +18,6 @@ describe('Test of all people routes', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
   });
 
