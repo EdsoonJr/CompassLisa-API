@@ -43,4 +43,16 @@ describe('Test of all people routes', () => {
     const result = await supertest(app).get(`/api/v1/people/${people.ppl._id}`);
     expect(result.statusCode).toBe(200);
   });
+
+  it('Test Route Update', async () => {
+    const result = await supertest(app).put(`/api/v1/people/${people.ppl._id}`).send({
+      nome: 'Ronelson Beckerd',
+      cpf: '26984819008',
+      data_nascimento: '26/03/2003',
+      email: 'ronelson@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(200);
+  });
 });
