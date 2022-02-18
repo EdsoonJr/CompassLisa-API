@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "dev": "nodemon src/server.js --ignore __tests__",
     "start": " node src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Edson Junior",
   "license": "ISC",
   "dependencies": {
     "@joi/date": "^2.1.0",
