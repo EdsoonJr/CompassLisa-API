@@ -69,6 +69,18 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(400);
   });
 
+  it('Test Route  Post *Invalid Password*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '03827704049',
+      data_nascimento: '26/03/2003',
+      email: 'neymaremail.com',
+      senha: '65432',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
   it('Test Route Get', async () => {
     const result = await supertest(app).get('/api/v1/people');
     expect(result.statusCode).toBe(200);
@@ -80,7 +92,7 @@ describe('Test of all people routes', () => {
   });
 
   it('Test Route Get ID *Invalid ID*', async () => {
-    const result = await supertest(app).get(`/api/v1/people/620ecc92f744bb27b165d505hh`);
+    const result = await supertest(app).get(`/api/v1/people/620ecc92f744bb27b165invalid`);
     expect(result.statusCode).toBe(400);
   });
 
