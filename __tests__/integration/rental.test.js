@@ -27,6 +27,25 @@ describe('Test of all rental routes', () => {
     await mongoose.connection.close();
   });
 
+  it('Test Route Post', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/rental')
+      .send({
+        nome: 'Pernambuco Automobilistcs',
+        cnpj: '47399144000126',
+        atividades: 'Venda e Compra de Automóveis',
+        endereco: [
+          {
+            cep: '54762303',
+            number: '115',
+            complemento: 'Muro A',
+            isFilial: false
+          }
+        ]
+      });
+    expect(res.statusCode).toBe(201);
+  });
+
   it('Test Route Get', async () => {
     const result = await supertest(app).get('/api/v1/rental');
     expect(result.statusCode).toBe(200);
@@ -50,24 +69,5 @@ describe('Test of all rental routes', () => {
   it('Test Route Get ID *Invalid Id*', async () => {
     const result = await supertest(app).get(`/api/v1/rental/620ed097f744bb27b165d5a4invalid`);
     expect(result.statusCode).toBe(400);
-  });
-
-  it('Test Route Post', async () => {
-    const res = await supertest(app)
-      .post('/api/v1/rental')
-      .send({
-        nome: 'Pernambuco Automobilistcs',
-        cnpj: '47399144000126',
-        atividades: 'Venda e Compra de Automóveis',
-        endereco: [
-          {
-            cep: '54762303',
-            number: '115',
-            complemento: 'Muro A',
-            isFilial: false
-          }
-        ]
-      });
-    expect(res.statusCode).toBe(201);
   });
 });
