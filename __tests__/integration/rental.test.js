@@ -42,6 +42,16 @@ describe('Test of all rental routes', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Get ID *Rental Not Found*', async () => {
+    const result = await supertest(app).get(`/api/v1/rental/620ed097f744bb27b165d5a5`);
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Get ID *Invalid Id*', async () => {
+    const result = await supertest(app).get(`/api/v1/rental/620ed097f744bb27b165d5a4invalid`);
+    expect(result.statusCode).toBe(400);
+  });
+
   it('Test Route Post', async () => {
     const res = await supertest(app)
       .post('/api/v1/rental')
