@@ -86,13 +86,23 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Get *Invalid URL*', async () => {
+    const result = await supertest(app).get('/api/v1/pessoas');
+    expect(result.statusCode).toBe(404);
+  });
+
   it('Test Route Get ID', async () => {
     const result = await supertest(app).get(`/api/v1/people/${people.ppl._id}`);
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Get ID *People Not Found *', async () => {
+    const result = await supertest(app).get('/api/v1/people/620ee325f362964e98f88a6c');
+    expect(result.statusCode).toBe(404);
+  });
+
   it('Test Route Get ID *Invalid ID*', async () => {
-    const result = await supertest(app).get(`/api/v1/people/620ecc92f744bb27b165invalid`);
+    const result = await supertest(app).get('/api/v1/people/620ecc92f744bb27b165invalid');
     expect(result.statusCode).toBe(400);
   });
 
