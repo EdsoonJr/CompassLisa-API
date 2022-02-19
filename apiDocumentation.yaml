@@ -13,6 +13,48 @@ servers:
 - url: http://localhost:3000/api/v1/
   description: API Compass-Lisa
 paths:
+
+  /authenticate:
+    post:
+      tags:
+        - Authenticate
+      summary: Autenticar Usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                   type: string
+                senha: 
+                  type: string
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    _id:
+                      type: string
+                    nome:
+                      type: string
+                    cpf: 
+                      type: string
+                    data_nascimento: 
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                     type: string
+                    habilitado:
+                      type: string
+                    token:
+                      type: string
+      
+  
   /car:
     get:
       security:
@@ -509,6 +551,8 @@ paths:
             schema: 
               type: object
               properties:
+
+
                 nome:
                   type: string
                 cnpj: 
@@ -537,6 +581,8 @@ paths:
               schema:
                 type: object
                 properties:
+                  _id:
+                    type: string
                   nome:
                     type: string
                   cnpj: 
