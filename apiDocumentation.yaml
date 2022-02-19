@@ -497,6 +497,71 @@ paths:
           content:
             application/json:
               example: "People Not Found"
+  
+  /rental:
+    post:
+      tags:
+        - Locadoras
+      summary: Cadastrar Locadora
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                nome:
+                  type: string
+                cnpj: 
+                  type: string
+                atividade:
+                  type: string
+                endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                         type: string
+                        number:
+                          type: string
+                        complemeto:
+                          type: string
+                        isFilial:
+                          type: string
+                
+      responses: 
+        201:
+          description: Locadora Cadastrada
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  cnpj: 
+                    type: string
+                  atividade:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                     type: object
+                     properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      complemeto:
+                        type: string
+                      isFilial:
+                        type: boolean
+                  
+        400:   
+          description: Falha no Cadastro
+          content: 
+            application/json:
+                   example: "Bad Request"
               
 components:
   securitySchemes:
