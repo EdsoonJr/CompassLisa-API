@@ -32,6 +32,16 @@ describe('Test of all rental routes', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Get ID *Invalid URL*', async () => {
+    const result = await supertest(app).get('/api/v1/rentalcar');
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Get ID', async () => {
+    const result = await supertest(app).get(`/api/v1/rental/${rental.rent._id}`);
+    expect(result.statusCode).toBe(200);
+  });
+
   it('Test Route Post', async () => {
     const res = await supertest(app)
       .post('/api/v1/rental')
