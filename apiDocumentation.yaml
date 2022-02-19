@@ -15,6 +15,10 @@ servers:
 paths:
   /car:
     get:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Listar Todos os Veículos
       parameters:
       - name: modelo
@@ -61,6 +65,10 @@ paths:
                     quantidadePassageiros: 
                        type: string
     post: 
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Cadastrar Veículo
       requestBody:
         content:
@@ -103,6 +111,10 @@ paths:
               example: "Veículo not registered"
   /car/{_id}:
     get:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Atualiza um Veículo
       parameters:
       - name: _id
@@ -129,6 +141,10 @@ paths:
                     quantidadePassageiros: 
                        type: string       
     put:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Atualiza um Veículo
       parameters:
       - name: _id
@@ -177,6 +193,10 @@ paths:
             application/json:
               example: "bad request"
     delete:
+      security:
+        - auth: []
+      tags:
+        - Carros
       summary: Excluir Veículo
       parameters:
       - name: _id
@@ -194,9 +214,73 @@ paths:
           description: Erro ao Excluir Veículo
           content:
             application/json:
-              example: "Veículo não Encontrado"
+              example: "Vehicle not found"
+              
+  /car/{id}/acessorios/{acessorioId}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: acessorioId
+        in: path
+        schema:
+          type: string
+        required: true
+    patch:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Atualizar a Descrição de Um Carro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses: 
+        201:
+          description: Atualizado!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Falha na Atualização
+          content:
+            application/json: 
+              example: "could not update"
+        404:
+          description: Erro ao atualizar descrição
+          content:
+            application/json:
+              example: "ID Not Found"   
   /people:
     post:
+      tags:
+        - Pessoas
       summary: Cadastrar Pessoa
       requestBody:
         content:
@@ -248,6 +332,8 @@ paths:
             application/json:
                    example: "Bad request"
     get:
+      tags:
+        - Pessoas
       summary: Listar Todos as Pessoas
       parameters:
       - in: query
@@ -300,6 +386,8 @@ paths:
                     type: string
   /people/{_id}:
     get:
+      tags:
+        - Pessoas
       summary: Buscar Pessoa Por Id
       parameters:
       - name: _id
@@ -331,6 +419,8 @@ paths:
                     type: string
 
     put:
+      tags:
+        - Pessoas
       summary: Atualizar uma Pessoa
       parameters:
       - name: _id
@@ -387,6 +477,8 @@ paths:
             application/json:
               example: "bad request"
     delete:
+      tags:
+        - Pessoas
       summary: Excluir Pessoa
       parameters:
       - name: _id
@@ -404,4 +496,12 @@ paths:
           description: Erro ao Excluir Pessoa
           content:
             application/json:
-              example: "Pessoa não Encontrada"
+              example: "People Not Found"
+              
+components:
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+         
