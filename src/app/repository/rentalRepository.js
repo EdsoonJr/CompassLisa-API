@@ -1,8 +1,8 @@
 const rentalSchema = require('../schema/rentalSchema');
 
 class RentalRepository {
-  async create(payload) {
-    return rentalSchema.create(payload);
+  async create(payload, data) {
+    return rentalSchema.create(payload, data);
   }
 
   async find(payload) {
