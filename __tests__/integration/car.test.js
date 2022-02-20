@@ -96,6 +96,43 @@ describe('Test All Routes Cars', () => {
     expect(result.statusCode).toBe(404);
   });
 
+  it('Test Route  Post *Invalid YEAR*', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/car')
+      .send({
+        modelo: 'Honda City ',
+        cor: 'Azul',
+        ano: '1949',
+        acessorios: [
+          {
+            descricao: 'Ar-condicionado'
+          },
+          {
+            descricao: 'Dir. elétrica'
+          }
+        ],
+        quantidadePassageiros: 5
+      })
+      .set('authorization', `Bearer ${token}`);
+
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route  Post *NO DESCRIPTIONS*', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/car')
+      .send({
+        modelo: 'Honda City ',
+        cor: 'Azul',
+        ano: '1949',
+        acessorios: [],
+        quantidadePassageiros: 5
+      })
+      .set('authorization', `Bearer ${token}`);
+
+    expect(result.statusCode).toBe(400);
+  });
+
   it('Teste Route Get', async () => {
     const result = await supertest(app).get('/api/v1/car').set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(200);
