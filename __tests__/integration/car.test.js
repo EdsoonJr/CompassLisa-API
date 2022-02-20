@@ -52,8 +52,52 @@ describe('Test All Routes Cars', () => {
     await mongoose.connection.close();
   });
 
+  it('Test Route  Post', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/car')
+      .send({
+        modelo: 'Honda City ',
+        cor: 'Azul',
+        ano: '2021',
+        acessorios: [
+          {
+            descricao: 'Ar-condicionado'
+          },
+          {
+            descricao: 'Dir. elétrica'
+          }
+        ],
+        quantidadePassageiros: 5
+      })
+      .set('authorization', `Bearer ${token}`);
+
+    expect(result.statusCode).toBe(201);
+  });
+
+  it('Test Route  Post *Invalid URL*', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/carros')
+      .send({
+        modelo: 'Honda City ',
+        cor: 'Azul',
+        ano: '2021',
+        acessorios: [
+          {
+            descricao: 'Ar-condicionado'
+          },
+          {
+            descricao: 'Dir. elétrica'
+          }
+        ],
+        quantidadePassageiros: 5
+      })
+      .set('authorization', `Bearer ${token}`);
+
+    expect(result.statusCode).toBe(404);
+  });
+
   it('Teste Route Get', async () => {
-    const res = await supertest(app).get('/api/v1/car').set('authorization', `Bearer ${token}`);
-    expect(res.statusCode).toBe(200);
+    const result = await supertest(app).get('/api/v1/car').set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(200);
   });
 });
