@@ -33,7 +33,7 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(201);
   });
 
-  it('Test Route  Post *Already exist CPF*', async () => {
+  it('Test Route  Post *Already in use CPF*', async () => {
     const result = await supertest(app).post('/api/v1/people').send({
       nome: 'Neymar o Brabo',
       cpf: '03827704049',
