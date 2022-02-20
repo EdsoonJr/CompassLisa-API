@@ -23,7 +23,6 @@ describe('Test of all rental routes', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
   });
 
