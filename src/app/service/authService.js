@@ -1,8 +1,8 @@
-const authRepository = require('../repository/authRepository');
+const AuthRepository = require('../repository/AuthRepository');
 
 class AuthService {
   async findAuthenticate(payload) {
-    return authRepository.findAuthenticate(payload);
+    return AuthRepository.findAuthenticate(payload);
   }
 }
 

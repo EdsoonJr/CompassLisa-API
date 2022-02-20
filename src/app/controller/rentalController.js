@@ -1,10 +1,10 @@
-const rentalService = require('../service/rentalService');
+const RentalService = require('../service/RentalService');
 const ErrorsMessages = require('../utils/Errors/ErrorsMessages');
 
 class RentalController {
   async insertRental(req, res) {
     try {
-      const newRental = await rentalService.create(req.body);
+      const newRental = await RentalService.create(req.body);
       return res.status(201).json({ Locadora: newRental });
     } catch (error) {
       return ErrorsMessages.badRequest(res, error.message);
@@ -13,7 +13,7 @@ class RentalController {
 
   async getAllRentals(req, res) {
     try {
-      const allRentals = await rentalService.find(req.query);
+      const allRentals = await RentalService.find(req.query);
       return res.status(200).json(allRentals);
     } catch (error) {
       return ErrorsMessages.badRequest(res, error.message);
@@ -23,7 +23,7 @@ class RentalController {
   async findOneRental(req, res) {
     try {
       const { id } = req.params;
-      const oneRental = await rentalService.findOne({ _id: id });
+      const oneRental = await RentalService.findOne({ _id: id });
 
       if (!oneRental) {
         return ErrorsMessages.notFound(res, 'Rental Not Found');
@@ -40,11 +40,11 @@ class RentalController {
     const reqRental = req.body;
 
     try {
-      const oneRental = await rentalService.findOne({ _id: id });
+      const oneRental = await RentalService.findOne({ _id: id });
       if (!oneRental) {
         return ErrorsMessages.notFound(res, 'Rental Not Found');
       }
-      const updatedPeople = await rentalService.update(id, reqRental);
+      const updatedPeople = await RentalService.update(id, reqRental);
       return res.status(200).json(updatedPeople);
     } catch (error) {
       return ErrorsMessages.badRequest(res, error.message);
@@ -54,13 +54,13 @@ class RentalController {
   async deleteRental(req, res) {
     try {
       const { id } = req.params;
-      const oneRental = await rentalService.findOne({ _id: id });
+      const oneRental = await RentalService.findOne({ _id: id });
 
       if (!oneRental) {
         return ErrorsMessages.notFound(res, 'Rental Not Found');
       }
 
-      await rentalService.delete({ _id: id });
+      await RentalService.delete({ _id: id });
       return res.status(204).json();
     } catch (error) {
       return ErrorsMessages.badRequest(res, error.message);

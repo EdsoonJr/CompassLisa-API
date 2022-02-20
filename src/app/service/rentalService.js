@@ -1,4 +1,4 @@
-const rentalRepository = require('../repository/rentalRepository');
+const RentalRepository = require('../repository/RentalRepository');
 const uniqueCnpj = require('../utils/uniques/uniqueCnpj');
 const ViaCepApi = require('../utils/viaCep/ViaCepApi');
 
@@ -27,28 +27,28 @@ class RentalService {
       throw new Error('More than one matrix is not allowed in the rental company');
     }
 
-    const newRental = await rentalRepository.create(payload, data);
+    const newRental = await RentalRepository.create(payload, data);
     return newRental;
   }
 
   async find(payload) {
-    const allRentals = await rentalRepository.find(payload);
+    const allRentals = await RentalRepository.find(payload);
     return allRentals;
   }
 
   async findOne(payload) {
-    const oneRental = await rentalRepository.findOne(payload);
+    const oneRental = await RentalRepository.findOne(payload);
     return oneRental;
   }
 
   async update(id, payload) {
     await uniqueCnpj(payload.cnpj);
-    const updatedPeople = await rentalRepository.update(id, payload);
+    const updatedPeople = await RentalRepository.update(id, payload);
     return updatedPeople;
   }
 
   async delete(payload) {
-    return rentalRepository.delete(payload);
+    return RentalRepository.delete(payload);
   }
 }
 

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../dbTest/database/app');
-const peopleService = require('../../src/app/service/peopleService');
-const carService = require('../../src/app/service/carService');
+const PeopleService = require('../../src/app/service/PeopleService');
+const CarService = require('../../src/app/service/CarService');
 // const authService = require('../../src/app/service/authService');
 
 let token = '';
@@ -10,8 +10,8 @@ const car = {};
 
 describe('Test All Routes Cars', () => {
   beforeAll(async () => {
-    car.cr = await carService.create({
-      modelo: 'Renault Duster ',
+    car.cr = await CarService.create({
+      modelo: 'Renault Duster 2022 ',
       cor: 'cinza',
       ano: '2021',
       acessorios: [
@@ -19,12 +19,18 @@ describe('Test All Routes Cars', () => {
           descricao: 'Ar-condicionado'
         },
         {
+          descricao: 'Dir. elétrica'
+        },
+        {
+          descricao: 'Piloto Auto.'
+        },
+        {
           descricao: '4 portas'
         }
       ],
       quantidadePassageiros: 5
     });
-    await peopleService.create({
+    await PeopleService.create({
       nome: 'Juinim do Token',
       cpf: '56155905053',
       data_nascimento: '26/03/2003',

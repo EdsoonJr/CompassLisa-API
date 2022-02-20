@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../dbTest/database/app');
-const rentalService = require('../../src/app/service/rentalService');
+const RentalService = require('../../src/app/service/RentalService');
 
 const rental = {};
 
 describe('Test of all rental routes', () => {
   beforeAll(async () => {
-    rental.rent = await rentalService.create({
+    rental.rent = await RentalService.create({
       nome: 'São Lourenço Cars',
       cnpj: '94811519000101',
       atividades: 'Carros Para Alugar',

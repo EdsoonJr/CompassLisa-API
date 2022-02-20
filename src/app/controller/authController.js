@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const gerarToken = require('../utils/authenticate/gerarToken');
-const authService = require('../service/authService');
+const AuthService = require('../service/AuthService');
 const ErrorsMessages = require('../utils/Errors/ErrorsMessages');
 
 class AuthController {
@@ -8,7 +8,7 @@ class AuthController {
     const { email, senha } = req.body;
 
     try {
-      const authUser = await authService.findAuthenticate({ email });
+      const authUser = await AuthService.findAuthenticate({ email });
 
       if (!authUser) {
         return ErrorsMessages.notFound(res, 'User Not Found');
