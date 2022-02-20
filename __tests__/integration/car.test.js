@@ -169,4 +169,23 @@ describe('Test All Routes Cars', () => {
       .set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(404);
   });
+
+  it('Teste Route Get *INVALID ID*', async () => {
+    const result = await supertest(app)
+      .get('/api/v1/car/620ece54f744bb27b165d527invalid')
+      .set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route Update', async () => {
+    const result = await supertest(app)
+      .put(`/api/v1/car/${car.cr._id}`)
+      .send({
+        modelo: 'Range Rover ',
+        cor: 'Preta',
+        ano: '2020'
+      })
+      .set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(200);
+  });
 });
