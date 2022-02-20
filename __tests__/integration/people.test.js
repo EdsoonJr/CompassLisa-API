@@ -118,16 +118,16 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Delete', async () => {
+    const result = await supertest(app).delete(`/api/v1/people/${people.ppl._id}`);
+    expect(result.statusCode).toBe(204);
+  });
+
   it('Test Route Authentication', async () => {
     const result = await supertest(app).post('/api/v1/authenticate').send({
       email: 'neymar@email.com',
       senha: '654321'
     });
     expect(result.statusCode).toBe(200);
-  });
-
-  it('Test Route Delete', async () => {
-    const result = await supertest(app).delete(`/api/v1/people/${people.ppl._id}`);
-    expect(result.statusCode).toBe(204);
   });
 });

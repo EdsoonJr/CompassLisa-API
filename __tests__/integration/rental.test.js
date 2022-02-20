@@ -9,7 +9,7 @@ describe('Test of all rental routes', () => {
   beforeAll(async () => {
     rental.rent = await rentalService.create({
       nome: 'São Lourenço Cars',
-      cnpj: '15164159000119',
+      cnpj: '94811519000101',
       atividades: 'Carros Para Alugar',
       endereco: [
         {
@@ -97,6 +97,25 @@ describe('Test of all rental routes', () => {
             number: '115',
             complemento: 'Muro A',
             isFilial: false
+          }
+        ]
+      });
+    expect(res.statusCode).toBe(400);
+  });
+
+  it('Test Route *Empty Fields*', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/rental')
+      .send({
+        nome: '',
+        cnpj: '',
+        atividades: '',
+        endereco: [
+          {
+            cep: '',
+            number: '',
+            complemento: '',
+            isFilial: ''
           }
         ]
       });
