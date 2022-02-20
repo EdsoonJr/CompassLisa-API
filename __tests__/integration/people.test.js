@@ -123,6 +123,11 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(204);
   });
 
+  it('Test Route Delete *Invalid Id*', async () => {
+    const result = await supertest(app).delete(`/api/v1/people/620ecc92f744bb27b165invalid`);
+    expect(result.statusCode).toBe(400);
+  });
+
   it('Test Route Authentication', async () => {
     const result = await supertest(app).post('/api/v1/authenticate').send({
       email: 'neymar@email.com',
