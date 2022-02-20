@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../dbTest/database/app');
-const PeopleService = require('../../src/app/service/peopleService');
+const peopleService = require('../../src/app/service/peopleService');
 
 const people = {};
 
 describe('Test of all people routes', () => {
   beforeAll(async () => {
-    people.ppl = await PeopleService.create({
+    people.ppl = await peopleService.create({
       nome: 'Herbert Richers',
       cpf: '00840974000',
       data_nascimento: '26/03/2003',
