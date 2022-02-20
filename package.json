@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:coverage" : "jest --coverage",
+    "test:coverage": "jest --coverage",
     "dev": "nodemon src/server.js --ignore __tests__",
     "start": " node src/server.js"
   },
@@ -22,7 +22,8 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
-    "mongoose-paginate-v2": "^1.5.0"
+    "mongoose-paginate-v2": "^1.5.0",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "eslint": "^8.9.0",
