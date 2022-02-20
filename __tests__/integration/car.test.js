@@ -133,8 +133,40 @@ describe('Test All Routes Cars', () => {
     expect(result.statusCode).toBe(400);
   });
 
+  it('Test Route  Post *EMPTY FIELDS*', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/car')
+      .send({
+        modelo: '',
+        cor: '',
+        ano: '',
+        acessorios: [],
+        quantidadePassageiros: 5
+      })
+      .set('authorization', `Bearer ${token}`);
+
+    expect(result.statusCode).toBe(400);
+  });
+
   it('Teste Route Get', async () => {
     const result = await supertest(app).get('/api/v1/car').set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(200);
+  });
+
+  it('Teste Route Get *INVALID URL*', async () => {
+    const result = await supertest(app).get('/api/v1/caroos').set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Teste Route Get *GET ID*', async () => {
+    const result = await supertest(app).get(`/api/v1/car/${car.cr._id}`).set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(200);
+  });
+
+  it('Teste Route Get *CAR NOT FOUND*', async () => {
+    const result = await supertest(app)
+      .get('/api/v1/car/620ece54f744bb27b165d527')
+      .set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(404);
   });
 });
