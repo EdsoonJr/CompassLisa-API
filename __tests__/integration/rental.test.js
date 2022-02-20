@@ -146,4 +146,11 @@ describe('Test of all rental routes', () => {
     const result = await supertest(app).get(`/api/v1/rental/620ed097f744bb27b165d5a4invalid`);
     expect(result.statusCode).toBe(400);
   });
+
+  it('Test Route Update', async () => {
+    const result = await supertest(app).put(`/api/v1/rental/${rental.rent._id}`).send({
+      nome: 'SLM Cars AutoPeças'
+    });
+    expect(result.statusCode).toBe(200);
+  });
 });
