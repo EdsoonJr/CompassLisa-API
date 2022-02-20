@@ -153,4 +153,14 @@ describe('Test of all rental routes', () => {
     });
     expect(result.statusCode).toBe(200);
   });
+
+  it('Test Route Delete', async () => {
+    const result = await supertest(app).delete(`/api/v1/rental/${rental.rent._id}`);
+    expect(result.statusCode).toBe(204);
+  });
+
+  it('Test Route Delete *Invalid Id*', async () => {
+    const result = await supertest(app).delete(`/api/v1/rental/620ecf87f744bb27b165d599dd`);
+    expect(result.statusCode).toBe(400);
+  });
 });
