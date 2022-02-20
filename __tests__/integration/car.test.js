@@ -74,6 +74,26 @@ describe('Test All Routes Cars', () => {
     expect(result.statusCode).toBe(201);
   });
 
+  it('Test Route  Post *UNAUTHORIZED*', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/car')
+      .send({
+        modelo: 'Honda City ',
+        cor: 'Azul',
+        ano: '2021',
+        acessorios: [
+          {
+            descricao: 'Ar-condicionado'
+          },
+          {
+            descricao: 'Dir. elétrica'
+          }
+        ],
+        quantidadePassageiros: 5
+      });
+    expect(result.statusCode).toBe(401);
+  });
+
   it('Test Route  Post *Invalid URL*', async () => {
     const result = await supertest(app)
       .post('/api/v1/carros')
@@ -187,5 +207,17 @@ describe('Test All Routes Cars', () => {
       })
       .set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(200);
+  });
+
+  it('Test Route Delete', async () => {
+    const result = await supertest(app).delete(`/api/v1/car/${car.cr._id}`).set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(204);
+  });
+
+  it('Test Route Delete *NOT FOUND DEL*', async () => {
+    const result = await supertest(app)
+      .delete(`/api/v1/car/620ece54f744bb27b165d527`)
+      .set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(404);
   });
 });
