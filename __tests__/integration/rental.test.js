@@ -65,6 +65,25 @@ describe('Test of all rental routes', () => {
     expect(res.statusCode).toBe(400);
   });
 
+  it('Test Route *Invalid CNPJ*', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/rental')
+      .send({
+        nome: 'Pernambuco Automobilistcs',
+        cnpj: '47399144000128',
+        atividades: 'Venda e Aluguel de Automóveis',
+        endereco: [
+          {
+            cep: '54762303',
+            number: '115',
+            complemento: 'Muro A',
+            isFilial: false
+          }
+        ]
+      });
+    expect(res.statusCode).toBe(400);
+  });
+
   it('Test Route *Invalid CEP*', async () => {
     const res = await supertest(app)
       .post('/api/v1/rental')
