@@ -3,7 +3,6 @@ const supertest = require('supertest');
 const app = require('../dbTest/database/app');
 const PeopleService = require('../../src/app/service/PeopleService');
 const CarService = require('../../src/app/service/CarService');
-// const authService = require('../../src/app/service/authService');
 
 let token = '';
 const car = {};
@@ -48,7 +47,6 @@ describe('Test All Routes Cars', () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
   });
 
@@ -146,6 +144,28 @@ describe('Test All Routes Cars', () => {
         cor: 'Azul',
         ano: '1949',
         acessorios: [],
+        quantidadePassageiros: 5
+      })
+      .set('authorization', `Bearer ${token}`);
+
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route  Post * DESCRIPTIONS DUPLICATED*', async () => {
+    const result = await supertest(app)
+      .post('/api/v1/car')
+      .send({
+        modelo: 'Honda City ',
+        cor: 'Azul',
+        ano: '1949',
+        acessorios: [
+          {
+            descricao: 'Dir. elétrica'
+          },
+          {
+            descricao: 'Dir. elétrica'
+          }
+        ],
         quantidadePassageiros: 5
       })
       .set('authorization', `Bearer ${token}`);
