@@ -3,7 +3,7 @@
 ## ![Imgur](https://i.imgur.com/0oM48aB.png) Sobre a Compasso-Lisa
 🏁 Desafio Final-Part 1
 
-> Status: Em Desenvolvimento🟡
+> Status: Finalizado ✅
 
 
  A compasso entrou em um novo ramo de mercado, a CompassLisa um seguimento de negócio de carros de luxo e semi luxo para alugar.
@@ -56,7 +56,7 @@ $ npm run start
 
 ## Rotas
 
-✨Cars
+ ### 🚗 Cars
 
 > POST - Cadastrar Carro http://localhost:3000/api/v1/car
 
@@ -153,7 +153,7 @@ $ npm run start
 > Delete- Deletar Veículo http://localhost:3000/api/v1/car/{id}
 
 
-✨Peoples
+### 🧑🏻‍🤝‍🧑🏻 Peoples
 
 > POST- Cadastrar Pessoa http://localhost:3000/api/v1/people
 
@@ -213,7 +213,7 @@ $ npm run start
 
 > Delete- Deletar Pessoa http://localhost:3000/api/v1/people/{id}
 
-✨Authenticate
+### ✅ Authenticate
 
 > Post- Validar email e senha http://localhost:3000/api/v1/authenticate
 
