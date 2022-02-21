@@ -1,7 +1,7 @@
 ![Imgur](https://i.imgur.com/3qOYB8G.png)
 
 ## ![Imgur](https://i.imgur.com/0oM48aB.png) Sobre a Compasso-Lisa
-🏁 Desafio Final-Part 1
+🏁 Desafio Final-Part 2
 
 > Status: Finalizado ✅
 
@@ -14,10 +14,13 @@ carros, usuários e a autenticação.
 
 O projeto está sendo desenvolvido utilizando as seguintes tecnologias:
 
-<a href="https://imgur.com/QdfWNBD"><img src="https://i.imgur.com/QdfWNBD.png?1" title="source: imgur.com" /></a>
-<a href="https://imgur.com/dMTWWOX"><img src="https://i.imgur.com/dMTWWOX.png?1" title="source: imgur.com" /></a>
-<a href="https://imgur.com/EIz2cz9"><img src="https://i.imgur.com/EIz2cz9.png?1" title="source: imgur.com" /></a>
+<p>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height=170px/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height=170px />
+<img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/postman.svg" height=170px/>
 <a href="https://imgur.com/FJQQexl"><img src="https://i.imgur.com/FJQQexl.png?2" title="source: imgur.com" /></a>
+</p>
+
 
 ## Funcionamento da API⚙️
 
@@ -35,6 +38,9 @@ $ cd CompassLisa-API
 # 3. Instale as dependências
 $ npm install
 
+# 5. Testar Api
+$ npm test
+
 # 4. Executar a api em modo de desenvolvimento
 $ npm run dev
 
@@ -51,12 +57,38 @@ $ npm run start
 + Joi
 + Joi/Date
 + Dotenv
-+ jsonwebtoken
++ Jsonwebtoken
 + bcryptjs
++ Swagger-ui-express
++ Mongoose-paginate-v2
++ Jest
 
 ## Rotas
 
- ### 🚗 Cars
+### 📝Swagger Ui
+> URL - http://localhost:3000/api/v1/api-docs/
+
+Testar a API Pelo Swagger
+
+
+### ✅ Authenticate
+
+> Post- Validar email e senha http://localhost:3000/api/v1/authenticate
+
+```bash
+{
+    "email": "jr@email.com",
+    "senha": "102030"
+}
+```
+
+
+ ### 🚗🔐 Cars
+ 
+ <p>
+ ❗ A Rota de carros agora possui autenticação por token bearer,
+   então é necessário validar o usuário com a rota de autenticação a cima,para adquirir o token. 
+ </p>
 
 > POST - Cadastrar Carro http://localhost:3000/api/v1/car
 
@@ -150,6 +182,17 @@ $ npm run start
 
 ```
 
+> PATCH- Atualizar Descrição de Veículo http://localhost:3000/api/v1/car/{id}/acessorios/{id-acessorio}
+
+```bash
+{
+    "descricao":"Ar Condicionado Auto."
+}
+
+```
+
+
+
 > Delete- Deletar Veículo http://localhost:3000/api/v1/car/{id}
 
 
@@ -213,32 +256,82 @@ $ npm run start
 
 > Delete- Deletar Pessoa http://localhost:3000/api/v1/people/{id}
 
-### ✅ Authenticate
 
-> Post- Validar email e senha http://localhost:3000/api/v1/authenticate
+### 🚘💰Locadoras
+
+> POST - Inserir Locadora http://localhost:3000/api/v1/rental
 
 ```bash
+
 {
-    "email": "jr@email.com",
-    "senha": "102030"
+    "nome": "Localiza Rent a Car",
+    "cnpj": "67930627000112",
+    "atividades": "Aluguel de Carros E Gestão de Frotas",
+    "endereco": [
+        {
+            "cep": "54705283",
+            "number": "1234",
+            "isFilial": false
+        }
+    ]
 }
 ```
 
-> Retorno:
 
-``` bash
+> GET- Listar Todas as Locadoras http://localhost:3000/api/v1/rental
+
+> GET- Listar uma Locadora http://localhost:3000/api/v1/rental/{id}
+
+> GET- Buscar por Query Params http://localhost:3000/api/v1/rental?campo=busca
+
+
+```bash
+
+"Locadoras": [
+        {
+            "_id": "620ecf87f744bb27b165d599",
+            "nome": "SLM CArs",
+            "cnpj": "54982348000150",
+            "atividades": "Aluguel de Carros E Gestão de Frotas",
+            "endereco": [
+                {
+                    "cep": "54705-283",
+                    "logradouro": "2ª Travessa Machado de Assis",
+                    "complemento": "",
+                    "bairro": "Capibaribe",
+                    "number": "1234",
+                    "localidade": "São Lourenço da Mata",
+                    "uf": "PE",
+                    "isFilial": false
+                },
+            ]
+        },
+```
+
+
+> PUT - Atualizar Locadora http://localhost:3000/api/v1/rental/{id}
+
+```bash
+
 {
-    "authUser": {
-        "_id": "61fb389c649b85c488c4cec4",
-        "nome": "Joaozinho Silva",
-        "cpf": "32286789037",
-        "data_nascimento": "26/03/1999",
-        "email": "jr@email.com",
-        "habilitado": "sim"
-    },
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJhbXMiOnsiaWQiOiI2MWZiMzg5YzY0
-    OWI4NWM0ODhjNGNlYzQifSwiaWF0IjoxNjQzODUzOTk3LCJleHAiOjE2NDM5NDAzOTd9.-GMM4yOjGDc3jb13iNjzwxtFK-SRu5fs4EV2-OCa9V8"
+    "nome": "NEW NAME",
+    "cnpj": "67930627000112",
+    "atividades": "Aluguel de Carros E Gestão de Frotas",
+    "endereco": [
+        {
+            "cep": "54705283",
+            "number": "1234",
+            "isFilial": false
+        }
+    ]
 }
 ```
+
+
+> Delete- Deletar Pessoa http://localhost:3000/api/v1/rental/{id}
+
+
+
+
 
 
