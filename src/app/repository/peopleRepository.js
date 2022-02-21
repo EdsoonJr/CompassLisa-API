@@ -6,24 +6,7 @@ class PeopleRepository {
   }
 
   async find(payload) {
-    const myCustomLabels = {
-      totalDocs: 'total',
-      docs: 'Pessoas',
-      totalPages: 'offsets',
-      page: 'offset',
-      nextPage: false,
-      prevPage: false,
-      pagingCounter: false,
-      meta: false,
-      hasPrevPage: false,
-      hasNextPage: false
-    };
-    const options = {
-      page: 1,
-      limit: 100,
-      customLabels: myCustomLabels
-    };
-    return peopleSchema.paginate(payload, options, {});
+    return peopleSchema.paginate(payload);
   }
 
   async findOne(payload) {

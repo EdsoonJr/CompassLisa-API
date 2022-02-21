@@ -6,24 +6,7 @@ class CarRepository {
   }
 
   async find(payload) {
-    const myCustomLabels = {
-      totalDocs: 'total',
-      docs: 'Veículos',
-      totalPages: 'offsets',
-      page: 'offset',
-      nextPage: false,
-      prevPage: false,
-      pagingCounter: false,
-      meta: false,
-      hasPrevPage: false,
-      hasNextPage: false
-    };
-    const options = {
-      page: 1,
-      limit: 5,
-      customLabels: myCustomLabels
-    };
-    return carSchema.paginate(payload, options, {});
+    return carSchema.paginate(payload);
   }
 
   async findOne(payload) {
