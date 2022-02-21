@@ -1,94 +1,84 @@
+const CarService = require('../service/CarService');
+const ErrorsMessages = require('../utils/Errors/ErrorsMessages');
 
-const carService = require('../service/carService');
-
-
-class CarController{
-  async insertCar(req, res){
+class CarController {
+  async insertCar(req, res) {
     try {
-      const newCar = await carService.create(req.body);
-      return res.status(201).json({"Veículo":newCar});
+      const newCar = await CarService.create(req.body);
+      return res.status(201).json({ Veículo: newCar });
     } catch (error) {
-      return res.status(500).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async findCars(req, res){
-    try { 
-      const allCars = await carService.find(req.query);
+  async findCars(req, res) {
+    try {
+      const allCars = await CarService.find(req.query);
       return res.status(200).json(allCars);
-            
-            
     } catch (error) {
-      return res.status(500).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async updateCar(req, res){
-    const {id} = req.params;
+  async updateCar(req, res) {
+    const { id } = req.params;
     const reqCar = req.body;
 
     try {
-      const oneCar = await carService.findOne({_id:id});
-      if(!oneCar){
-        return res.status(404).json({ message: 'Veículo Não Encontrado' });
+      const oneCar = await CarService.findOne({ _id: id });
+      if (!oneCar) {
+        return ErrorsMessages.notFound(res, 'Vehicle Not Found');
       }
 
-      const  updatedCar = await carService.update(id, reqCar);
+      const updatedCar = await CarService.update(id, reqCar);
       return res.status(200).json(updatedCar);
     } catch (error) {
-      return res.status(400).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
-            
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async deleteCar(req, res){
-    try {
-      const {id} = req.params; 
-      const oneCar = await carService.findOne({_id:id});
+  async updateAcessory(req, res) {
+    const { id, acessorioId } = req.params;
+    const payload = req.body;
 
-      if(!oneCar){
-        return res.status(404).json({ message: 'Veículo Não Encontrado' });
+    try {
+      const updatedAcessory = await CarService.patch(id, acessorioId, payload);
+      return res.status(200).json(updatedAcessory);
+    } catch (error) {
+      return ErrorsMessages.badRequest(res, error.message);
+    }
+  }
+
+  async deleteCar(req, res) {
+    try {
+      const { id } = req.params;
+      const oneCar = await CarService.findOne({ _id: id });
+
+      if (!oneCar) {
+        return ErrorsMessages.notFound(res, 'Vehicle Not Found');
       }
 
-      await carService.delete({_id:id});
+      await CarService.delete({ _id: id });
       return res.status(204).json();
-
     } catch (error) {
-      return res.status(400).json({
-        'message': 'Id Inválido',
-        'details': [{ 'message': error.message }]
-      });   
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async findOneCar(req, res){
+  async findOneCar(req, res) {
     try {
-      const {id} = req.params;
-      const oneCar = await carService.findOne({_id:id});
-            
-      if(!oneCar){
-        return res.status(404).json({message: "Veículo Não encontrado"});
+      const { id } = req.params;
+      const oneCar = await CarService.findOne({ _id: id });
+
+      if (!oneCar) {
+        return ErrorsMessages.notFound(res, 'Vehicle Not Found');
       }
-            
-      return res.status(200).json({"Veículo":oneCar});
+
+      return res.status(200).json({ Veículo: oneCar });
     } catch (error) {
-      return res.status(500).json({ 
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
-            
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 }
 
-module.exports = new CarController;
-
+module.exports = new CarController();

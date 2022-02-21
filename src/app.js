@@ -4,7 +4,7 @@ const router = require('./routes');
 require('./infra/database/mongo/index');
 
 class App {
-  constructor () {
+  constructor() {
     this.server = express();
     this.routes();
     this.middlewares();

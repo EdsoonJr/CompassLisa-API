@@ -1,94 +1,72 @@
+const PeopleService = require('../service/PeopleService');
+const ErrorsMessages = require('../utils/Errors/ErrorsMessages');
 
-const peopleService = require('../service/peopleService');
-
-class PeopleController{
-  async insertPeople(req, res){
+class PeopleController {
+  async insertPeople(req, res) {
     try {
-      const newPeople = await peopleService.create(req.body);
-      return res.status(201).json({"Pessoa":newPeople});
+      const newPeople = await PeopleService.create(req.body);
+      return res.status(201).json({ Pessoa: newPeople });
     } catch (error) {
-      return res.status(400).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async getAllPeoples(req, res){
+  async getAllPeoples(req, res) {
     try {
-      const allPeoples = await peopleService.find(req.query);
+      const allPeoples = await PeopleService.find(req.query);
       return res.status(200).json(allPeoples);
-
     } catch (error) {
-      return res.status(400).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
-            
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async findOnePeople(req, res){
+  async findOnePeople(req, res) {
     try {
-      const {id} = req.params;
-      const onePeople = await peopleService.findOne({_id:id});
-            
-      if(!onePeople){
-        return res.status(404).json({message: "Pessoa Não encontrada"});
+      const { id } = req.params;
+      const onePeople = await PeopleService.findOne({ _id: id });
+
+      if (!onePeople) {
+        return ErrorsMessages.notFound(res, 'People Not Found');
       }
-            
-      return res.status(200).json({"Pessoa":onePeople});
+
+      return res.status(200).json({ Pessoa: onePeople });
     } catch (error) {
-      return res.status(500).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
-            
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-  async updatePeople(req, res){
-    const {id} = req.params;
+  async updatePeople(req, res) {
+    const { id } = req.params;
     const reqPeople = req.body;
-    
+
     try {
-      const onePeople = await peopleService.findOne({_id:id});
-      if(!onePeople){
-        return res.status(404).json({ message: 'Pessoas Não Encontrada' });
+      const onePeople = await PeopleService.findOne({ _id: id });
+      if (!onePeople) {
+        return ErrorsMessages.notFound(res, 'People Not Found');
       }
-    
-      const  updatedPeople = await peopleService.update(id, reqPeople);
+
+      const updatedPeople = await PeopleService.update(id, reqPeople);
       return res.status(200).json(updatedPeople);
     } catch (error) {
-      return res.status(400).json({ 
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });
-            
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 
-
-  async deletePeople(req, res){
+  async deletePeople(req, res) {
     try {
-      const {id} = req.params; 
-      const onePeople = await peopleService.findOne({_id:id});
+      const { id } = req.params;
+      const onePeople = await PeopleService.findOne({ _id: id });
 
-      if(!onePeople){
-        return res.status(404).json({ message: 'Pessoa Não Encontrada' });
+      if (!onePeople) {
+        return ErrorsMessages.notFound(res, 'People Not Found');
       }
 
-      await peopleService.delete({_id:id});
+      await PeopleService.delete({ _id: id });
       return res.status(204).json();
-
     } catch (error) {
-      return res.status(400).json({  
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      });   
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
-
 }
 
-module.exports = new PeopleController;
+module.exports = new PeopleController();

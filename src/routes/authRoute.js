@@ -1,6 +1,7 @@
-const authController = require('../app/controller/authController');
+const AuthController = require('../app/controller/AuthController');
+const authValidation = require('../app/validation/auth/authValidation');
 
 module.exports = (server, routes, prefix = '/api/v1/authenticate') => {
-  routes.post('/', authController.authenticateUser);
+  routes.post('/', authValidation, AuthController.authenticateUser);
   server.use(prefix, routes);
 };

@@ -4,30 +4,35 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "dev": "nodemon src/server.js --ignore __tests__",
     "start": " node src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Edson Junior",
   "license": "ISC",
   "dependencies": {
     "@joi/date": "^2.1.0",
+    "axios": "^0.26.0",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^15.0.0",
     "express": "^4.17.2",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
-    "mongoose-paginate-v2": "^1.5.0"
+    "mongoose-paginate-v2": "^1.5.0",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
-    "cors": "^2.8.5",
-    "eslint": "^8.8.0",
+    "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
-    "prettier": "2.5.1"
+    "supertest": "^6.2.2"
   }
 }

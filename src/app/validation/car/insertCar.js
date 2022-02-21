@@ -1,7 +1,6 @@
-
 const Joi = require('joi');
 
-module.exports = async (req, res, next)=>{
+module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
       modelo: Joi.string().required(),
@@ -13,19 +12,18 @@ module.exports = async (req, res, next)=>{
       acessorios: Joi.array().items(Joi.object().required()).unique().required(),
 
       quantidadePassageiros: Joi.number().integer().required()
-
     });
 
     const { error } = await schema.validate(req.body, { abortEarly: false });
 
-    if (error){
-      throw{
-        message:'Bad Request',
-        details: error.details
-      };
+    if (error) {
+      throw error;
     }
     return next();
   } catch (error) {
-    return res.status(400).json(error);
+    return res.status(400).json({
+      'description:': error.details[0].path[0],
+      'name:': error.message
+    });
   }
 };

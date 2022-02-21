@@ -1,0 +1,813 @@
+openapi: 3.0.1
+info:
+  title: Compass-Lisa
+  description: A compasso entrou em um novo ramo de mercado, a CompassLisa um seguimento de negócio de carros de luxo e semi luxo para alugar.
+  version: 0.0.1
+  contact:
+    name: Edson de Araújo Junior
+    email: edsonjn2013@gmail.com
+  license:
+    name: "Lincença: MIT"
+    url: https://opensource.org/licenses/MIT
+externalDocs:
+  description: Repositório-(Github)
+  url: https://github.com/EdsoonJr/CompassLisa-API
+servers:
+- url: http://localhost:3000/api/v1/
+  description: API Compass-Lisa
+paths:
+
+  /authenticate:
+    post:
+      tags:
+        - Authenticate
+      summary: Autenticar Usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                   type: string
+                senha: 
+                  type: string
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    _id:
+                      type: string
+                    nome:
+                      type: string
+                    cpf: 
+                      type: string
+                    data_nascimento: 
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                     type: string
+                    habilitado:
+                      type: string
+                    token:
+                      type: string
+  /car:
+    get:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Listar Todos os Veículos
+      parameters:
+      - name: modelo
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cor
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: ano
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: acessorios
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: quantidadePassageiros
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    modelo:
+                       type: string
+                    cor: 
+                       type: string
+                    ano: 
+                       type: string
+                    acessorios:
+                       type: string
+                    quantidadePassageiros: 
+                       type: string
+    post: 
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Cadastrar Veículo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                cor:
+                  type: string
+                ano:
+                  type: string
+                acessorios:
+                  type: string
+                quantidadePassageiros:
+                  type: string
+      responses: 
+        201:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano: 
+                    type: string
+                  acessorios:
+                    type: string
+                  quantidadePassageiros: 
+                    type: string
+        400:
+          description: Falha no Cadastro
+          content:
+            application/json: 
+              example: "Bad Request"
+  /car/{_id}:
+    get:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Atualiza um Veículo
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    modelo:
+                       type: string
+                    cor: 
+                       type: string
+                    ano: 
+                       type: string
+                    acessorios:
+                       type: string
+                    quantidadePassageiros: 
+                       type: string       
+    put:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Atualiza um Veículo
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                   type: string
+                cor: 
+                  type: string
+                ano: 
+                   type: string
+                acessorios:
+                  type: string
+                quantidadePassageiros: 
+                    type: string
+               
+      responses:
+        200:
+          description: Veículo Atualizado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                 modelo:
+                  type: string
+                 cor: 
+                   type: string
+                 ano: 
+                  type: string
+                 acessorios:
+                  type: string
+                 quantidadePassageiros: 
+                    type: string
+        400:
+          description: Erro ao atualizar funcionário
+          content:
+            application/json:
+              example: "Bad Request"
+    delete:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Excluir Veículo
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Veículo Excluído
+          content:
+            application/json:
+              example: ""
+        404:
+          description: Erro ao Excluir Veículo
+          content:
+            application/json:
+              example: "Vehicle Not Found"
+              
+  /car/{id}/acessorios/{acessorioId}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: acessorioId
+        in: path
+        schema:
+          type: string
+        required: true
+    patch:
+      security:
+        - auth: []
+      tags:
+        - Carros
+      summary: Atualizar a Descrição de Um Carro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string           
+      responses: 
+        201:
+          description: Atualizado!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  _id:
+                    type: string
+                  modelo:
+                    type: string
+                  cor: 
+                    type: string
+                  ano:
+                    type: string
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                         type: string
+                  quantidadePassageiros:
+                    type: number
+        400:
+          description: Falha na Atualização
+          content:
+            application/json: 
+              example: "Bad Request"
+        404:
+          description: Erro ao atualizar descrição
+          content:
+            application/json:
+              example: "Description Not Found"   
+
+  /people:
+    post:
+      tags:
+        - Pessoas
+      summary: Cadastrar Pessoa
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                _id:
+                  type: string
+                nome:
+                  type: string
+                cpf: 
+                  type: string
+                data_nascimento: 
+                  type: string
+                email:
+                  type: string
+                senha:
+                  type: string
+                habilitado:
+                  type: string
+
+      responses: 
+        201:
+          description: produto cadastrado
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf: 
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+                  
+        400:   
+          description: produto cadastrado
+          content: 
+            application/json:
+                   example: "Bad request"
+
+    get:
+      tags:
+        - Pessoas
+      summary: Listar Todos as Pessoas
+      parameters:
+      - in: query
+        name: nome
+        schema:
+          type: string
+      - in: query
+        name: cpf
+        schema:
+          type: integer
+      - in: query
+        name: data_nascimento
+        schema:
+          type: string
+      - in: query
+        name: email
+        schema:
+          type: string
+      - in: query
+        name: senha
+        schema:
+          type: string
+      - in: query
+        name: habilitado
+        schema:
+          type: string
+ 
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf: 
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+  /people/{_id}:
+    get:
+      tags:
+        - Pessoas
+      summary: Buscar Pessoa Por Id
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf: 
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+
+    put:
+      tags:
+        - Pessoas
+      summary: Atualizar uma Pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf: 
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+               
+      responses:
+        200:
+          description: Pessoa Atualizada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cpf: 
+                    type: string
+                  data_nascimento: 
+                    type: string
+                  email:
+                    type: string
+                  senha:
+                    type: string
+                  habilitado:
+                    type: string
+        400:
+          description: Erro ao atualizar Pessoa
+          content:
+            application/json:
+              example: "bad request"
+
+    delete:
+      tags:
+        - Pessoas
+      summary: Excluir Pessoa
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Pessoa Excluída
+          content:
+            application/json:
+              example: ""
+        404:
+          description: Erro ao Excluir Pessoa
+          content:
+            application/json:
+              example: "People Not Found"
+  
+  /rental:
+    post:
+      tags:
+        - Locadoras
+      summary: Cadastrar Locadora
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                nome:
+                  type: string
+                cnpj: 
+                  type: string
+                atividade:
+                  type: string
+                endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                         type: string
+                        number:
+                          type: string
+                        complemeto:
+                          type: string
+                        isFilial:
+                          type: string
+           
+      responses: 
+        201:
+          description: Locadora Cadastrada
+          content:
+             application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj: 
+                    type: string
+                  atividade:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                     type: object
+                     properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      complemeto:
+                        type: string
+                      isFilial:
+                        type: boolean
+                  
+        400:   
+          description: Falha no Cadastro
+          content: 
+            application/json:
+                   example: "Bad Request"
+              
+    get:
+      tags:
+        - Locadoras
+      summary: Listar Todas as Locadoras
+      parameters:
+      - name: nome
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: cnpj
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: atividades
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: endereco
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj: 
+                    type: string
+                  atividade:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                     type: object
+                     properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      complemeto:
+                        type: string
+                      isFilial:
+                        type: boolean
+                          
+  /rental/{_id}:
+    get:
+      tags:
+        - Locadoras
+      summary: Buscar Locadora Por ID
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj: 
+                    type: string
+                  atividade:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                     type: object
+                     properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      complemeto:
+                        type: string
+                      isFilial:
+                        type: boolean
+        404:
+          description: Locadora Não Encontrada
+          content:
+            application/json:
+              example: "Rental Not Found"
+    
+    put:
+      tags:
+        - Locadoras
+      summary: Atualizar Uma Locadora
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  nome:
+                    type: string
+                  cnpj: 
+                    type: string
+                  atividade:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                     type: object
+                     properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      complemeto:
+                        type: string
+                      isFilial:
+                        type: boolean      
+      responses:
+        200:
+          description: Locadora Atualizada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  nome:
+                    type: string
+                  cnpj: 
+                    type: string
+                  atividade:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                     type: object
+                     properties:
+                      cep:
+                        type: string
+                      number:
+                        type: string
+                      complemeto:
+                        type: string
+                      isFilial:
+                       type: boolean
+                     
+        404:
+          description: Locadora Não Encontrada
+          content:
+            application/json:
+              example: "Rental Not Found"
+              
+    delete:
+      tags:
+        - Locadoras
+      summary: Excluir Locadora
+      parameters:
+      - name: _id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses: 
+        204:
+          description: Locadora Excluida
+          content:
+            application/json:
+              example: ""
+        404:
+          description: Erro ao Excluir Locadora
+          content:
+            application/json:
+              example: "People Not Found"
+                       
+components:
+  securitySchemes:
+    auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+         
