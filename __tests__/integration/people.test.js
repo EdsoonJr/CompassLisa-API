@@ -68,6 +68,17 @@ describe('Test of all people routes', () => {
     });
     expect(result.statusCode).toBe(400);
   });
+  it('Test Route  Post *Invalid CPF LONG*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '03827704044465',
+      data_nascimento: '26/03/2003',
+      email: 'neymariemail@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
 
   it('Test Route  Post *Invalid EMAIL*', async () => {
     const result = await supertest(app).post('/api/v1/people').send({
@@ -128,6 +139,17 @@ describe('Test of all people routes', () => {
     });
     expect(result.statusCode).toBe(400);
   });
+  it('Test Route  Post *No EMPTY DATE*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '77822719084',
+      data_nascimento: '',
+      email: 'neymarempt@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
 
   it('Test Route  Post *No EMPTY ALL*', async () => {
     const result = await supertest(app).post('/api/v1/people').send({
@@ -146,8 +168,8 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(200);
   });
 
-  it('Test Route Get *invalid Query*', async () => {
-    const result = await supertest(app).get('/api/v1/people');
+  it('Test Route Get *QUERY PARAMS*', async () => {
+    const result = await supertest(app).get('/api/v1/people?cpf=00840974000');
     expect(result.statusCode).toBe(200);
   });
 

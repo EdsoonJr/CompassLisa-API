@@ -142,7 +142,7 @@ describe('Test All Routes Cars', () => {
       .send({
         modelo: 'Honda City ',
         cor: 'Azul',
-        ano: '1949',
+        ano: '2021',
         acessorios: [],
         quantidadePassageiros: 5
       })
@@ -157,7 +157,7 @@ describe('Test All Routes Cars', () => {
       .send({
         modelo: 'Honda City ',
         cor: 'Azul',
-        ano: '1949',
+        ano: '2021',
         acessorios: [
           {
             descricao: 'Dir. elétrica'
