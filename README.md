@@ -41,7 +41,9 @@ $ npm install
 
 # 5. Testar Api
 $ npm test
-
+```
+![Imgur](https://i.imgur.com/PWMQBpX.png) 
+```
 # 4. Executar a api em modo de desenvolvimento
 $ npm run dev
 
