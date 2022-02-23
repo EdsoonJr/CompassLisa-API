@@ -19,6 +19,7 @@ O projeto está sendo desenvolvido utilizando as seguintes tecnologias:
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height=170px />
 <img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/postman.svg" height=170px/>
 <a href="https://imgur.com/FJQQexl"><img src="https://i.imgur.com/FJQQexl.png?2" title="source: imgur.com" /></a>
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="170px" />
 </p>
 
 
@@ -63,12 +64,17 @@ $ npm run start
 + Mongoose-paginate-v2
 + Jest
 
+## <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="70px" /> >Deploy
+
+
+> Documentação online da API: https://jr-compass-lisa-api.herokuapp.com/api/v1/api-docs/
+
 ## Rotas
 
 ### 📝Swagger Ui
-> URL - http://localhost:3000/api/v1/api-docs/
+> Rota - http://localhost:3000/api/v1/api-docs/
 
-Testar a API Pelo Swagger
+Testar a API Pelo Swagger Localmente
 
 
 ### ✅ Authenticate
