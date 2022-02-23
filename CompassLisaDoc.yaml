@@ -13,8 +13,10 @@ externalDocs:
   description: Repositório-(Github)
   url: https://github.com/EdsoonJr/CompassLisa-API
 servers:
+- url: https://jr-compass-lisa-api.herokuapp.com/api/v1
+  description: Compass-Lisa Heroku
 - url: http://localhost:3000/api/v1/
-  description: API Compass-Lisa
+  description: Compass-Lisa Local
 paths:
 
   /authenticate:
