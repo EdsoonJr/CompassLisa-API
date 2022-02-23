@@ -14,7 +14,7 @@ class ErrorsMessages {
   }
 
   invalidPassWd(res, message) {
-    return res.status(404).json({
+    return res.status(400).json({
       description: 'Password',
       name: message
     });
