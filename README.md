@@ -15,11 +15,11 @@ carros, usuários e a autenticação.
 O projeto está sendo desenvolvido utilizando as seguintes tecnologias:
 
 <p>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height=170px/>
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height=170px />
-<img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/postman.svg" height=170px/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="160px"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="160px" />
+<img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/postman.svg" height="160px"/>
 <a href="https://imgur.com/FJQQexl"><img src="https://i.imgur.com/FJQQexl.png?2" title="source: imgur.com" /></a>
- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="170px" />
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="160px" />
 </p>
 
 
