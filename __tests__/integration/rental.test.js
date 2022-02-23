@@ -102,6 +102,44 @@ describe('Test of all rental routes', () => {
     expect(res.statusCode).toBe(400);
   });
 
+  it('Test Route *Invalid CNPJ LONG*', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/rental')
+      .send({
+        nome: 'Pernambuco Automobilistcs',
+        cnpj: '473991440001265465465',
+        atividades: 'Venda e Aluguel de Automóveis',
+        endereco: [
+          {
+            cep: '547623038',
+            number: '115',
+            complemento: 'Muro A',
+            isFilial: false
+          }
+        ]
+      });
+    expect(res.statusCode).toBe(400);
+  });
+
+  it('Test Route *Invalid CEP LONG*', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/rental')
+      .send({
+        nome: 'Pernambuco Automobilistcs',
+        cnpj: '47399144000126',
+        atividades: 'Venda e Aluguel de Automóveis',
+        endereco: [
+          {
+            cep: '54762303864564',
+            number: '115',
+            complemento: 'Muro A',
+            isFilial: false
+          }
+        ]
+      });
+    expect(res.statusCode).toBe(400);
+  });
+
   it('Test Route *Empty Fields*', async () => {
     const res = await supertest(app)
       .post('/api/v1/rental')

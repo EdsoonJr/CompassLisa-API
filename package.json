@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --coverageReporters",
     "dev": "nodemon src/server.js --ignore __tests__",
     "start": " node src/server.js"
   },

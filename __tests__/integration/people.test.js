@@ -36,9 +36,21 @@ describe('Test of all people routes', () => {
   it('Test Route  Post *Already in use CPF*', async () => {
     const result = await supertest(app).post('/api/v1/people').send({
       nome: 'Neymar o Brabo',
-      cpf: '03827704049',
+      cpf: '00840974000',
       data_nascimento: '26/03/2003',
-      email: 'neymar@email.com',
+      email: 'neymarjrr@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route  Post *Already in use EMAIL*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '02072496012',
+      data_nascimento: '26/03/2003',
+      email: 'herbert@email.com',
       senha: '654321',
       habilitado: 'sim'
     });
@@ -50,7 +62,18 @@ describe('Test of all people routes', () => {
       nome: 'Neymar o Brabo',
       cpf: '03827704044',
       data_nascimento: '26/03/2003',
-      email: 'neymar@email.com',
+      email: 'neymariemail@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+  it('Test Route  Post *Invalid CPF LONG*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '03827704044465',
+      data_nascimento: '26/03/2003',
+      email: 'neymariemail@email.com',
       senha: '654321',
       habilitado: 'sim'
     });
@@ -72,17 +95,81 @@ describe('Test of all people routes', () => {
   it('Test Route  Post *Invalid Password*', async () => {
     const result = await supertest(app).post('/api/v1/people').send({
       nome: 'Neymar o Brabo',
-      cpf: '03827704049',
+      cpf: '68337121076',
       data_nascimento: '26/03/2003',
-      email: 'neymaremail.com',
+      email: 'neymarjrpw@email.com',
       senha: '65432',
       habilitado: 'sim'
     });
     expect(result.statusCode).toBe(400);
   });
 
+  it('Test Route  Post *Invalid DATE*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '18932501050',
+      data_nascimento: '26/03/2022',
+      email: 'neymardate@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route  Post *No EMPTY CPF*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '',
+      data_nascimento: '26/03/2003',
+      email: 'neymarempt@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route  Post *No EMPTY Email*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '77822719084',
+      data_nascimento: '26/03/2003',
+      email: '',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+  it('Test Route  Post *No EMPTY DATE*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: 'Neymar o Brabo',
+      cpf: '77822719084',
+      data_nascimento: '',
+      email: 'neymarempt@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route  Post *No EMPTY ALL*', async () => {
+    const result = await supertest(app).post('/api/v1/people').send({
+      nome: '',
+      cpf: '',
+      data_nascimento: '',
+      email: '',
+      senha: '',
+      habilitado: ''
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
   it('Test Route Get', async () => {
     const result = await supertest(app).get('/api/v1/people');
+    expect(result.statusCode).toBe(200);
+  });
+
+  it('Test Route Get *QUERY PARAMS*', async () => {
+    const result = await supertest(app).get('/api/v1/people?cpf=00840974000');
     expect(result.statusCode).toBe(200);
   });
 
