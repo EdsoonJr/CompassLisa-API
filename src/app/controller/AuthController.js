@@ -8,24 +8,28 @@ class AuthController {
     const { email, senha } = req.body;
 
     try {
-      const authUser = await AuthService.findAuthenticate({ email });
+      const user = await AuthService.findAuthenticate({ email });
 
-      if (!authUser) {
+      if (!user) {
         return ErrorsMessages.notFound(res, 'User Not Found');
       }
 
-      if (!(await bcrypt.compare(senha, authUser.senha))) {
+      if (!(await bcrypt.compare(senha, user.senha))) {
         return ErrorsMessages.invalidPassWd(res, 'Invalid Password');
       }
 
-      authUser.senha = undefined;
+      const { habilitado, token } = user;
+
+      const authUser = { email, habilitado, token };
+
+      user.senha = undefined;
 
       return res.send({
         authUser,
-        token: gerarToken({ id: authUser.id })
+        token: gerarToken({ id: user.id })
       });
     } catch (error) {
-      return res.status(400).json({ error });
+      return ErrorsMessages.badRequest(res, error.message);
     }
   }
 }

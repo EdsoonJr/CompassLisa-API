@@ -159,6 +159,25 @@ describe('Test of all rental routes', () => {
     expect(res.statusCode).toBe(400);
   });
 
+  it('Test Route Post *INVALD URL*', async () => {
+    const res = await supertest(app)
+      .post('/api/v1/locadora')
+      .send({
+        nome: 'Pernambuco Automobilistcs',
+        cnpj: '47399144000126',
+        atividades: 'Venda e Aluguel de Automóveis',
+        endereco: [
+          {
+            cep: '54762303',
+            number: '115',
+            complemento: 'Muro A',
+            isFilial: false
+          }
+        ]
+      });
+    expect(res.statusCode).toBe(404);
+  });
+
   it('Test Route Get', async () => {
     const result = await supertest(app).get('/api/v1/rental');
     expect(result.statusCode).toBe(200);
@@ -175,7 +194,7 @@ describe('Test of all rental routes', () => {
   });
 
   it('Test Route Get ID *Rental Not Found*', async () => {
-    const result = await supertest(app).get(`/api/v1/rental/620ed097f744bb27b165d5a5`);
+    const result = await supertest(app).get(`/api/v1/rental/620feec126c89d3240e6dfb2`);
     expect(result.statusCode).toBe(404);
   });
 
@@ -189,6 +208,27 @@ describe('Test of all rental routes', () => {
       nome: 'SLM Cars AutoPeças'
     });
     expect(result.statusCode).toBe(200);
+  });
+
+  it('Test Route Update *INVALID URL*', async () => {
+    const result = await supertest(app).put(`/api/v1/locadora/${rental.rent._id}`).send({
+      nome: 'SLM Cars AutoPeças'
+    });
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Update *NOT FOUND*', async () => {
+    const result = await supertest(app).put(`/api/v1/rental/620feec126c89d3240e6dfb2`).send({
+      nome: 'SLM Cars AutoPeças'
+    });
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Update *INVALID ID*', async () => {
+    const result = await supertest(app).put(`/api/v1/rental/620feec126c89d3240e6dfb2invalidd`).send({
+      nome: 'SLM Cars AutoPeças'
+    });
+    expect(result.statusCode).toBe(400);
   });
 
   it('Test Route Delete', async () => {

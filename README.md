@@ -1,14 +1,13 @@
 ![Imgur](https://i.imgur.com/3qOYB8G.png)
 
-## ![Imgur](https://i.imgur.com/0oM48aB.png) Sobre a Compasso-Lisa
+# ![Imgur](https://i.imgur.com/0oM48aB.png) Sobre a Compasso-Lisa
 🏁 Desafio Final-Part 2
 
 > Status: Finalizado ✅
 
 
  A compasso entrou em um novo ramo de mercado, a CompassLisa um seguimento de negócio de carros de luxo e semi luxo para alugar.
- pessando nisso foi solicitado um sistema para gerenciar o negocio,onde nesta primeira etapa foi criado os registros de
-carros, usuários e a autenticação.
+ Pessando nisso foi solicitado um sistema para gerenciar todo o negocio da empresa.
 
 ## Sobre a API
 
@@ -19,7 +18,7 @@ O projeto está sendo desenvolvido utilizando as seguintes tecnologias:
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" height="160px" />
 <img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/postman.svg" height="160px"/>
 <a href="https://imgur.com/FJQQexl"><img src="https://i.imgur.com/FJQQexl.png?2" title="source: imgur.com" /></a>
- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="160px" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="160px" />
 </p>
 
 
@@ -42,7 +41,7 @@ $ npm install
 # 5. Testar Api
 $ npm test
 ```
-![Imgur](https://i.imgur.com/PWMQBpX.png) 
+![Imgur](https://i.imgur.com/yVwrA38.png)
 ```
 # 4. Executar a api em modo de desenvolvimento
 $ npm run dev
@@ -53,7 +52,7 @@ $ npm run start
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
 ```
 
-### Bibliotecas Utilizadas
+## Bibliotecas Utilizadas
 
 + Mongoose
 + Express
@@ -66,14 +65,15 @@ $ npm run start
 + Mongoose-paginate-v2
 + Jest
 
-## <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="70px" /> >Deploy
+__________________________________________________________________________________________________________________________
+## <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" height="65px" /> Deploy
 
 
 > Documentação online da API: https://jr-compass-lisa-api.herokuapp.com/api/v1/api-docs/
 
 ## Rotas
 
-### 📝Swagger Ui
+### <a href="https://imgur.com/FJQQexl"><img src="https://i.imgur.com/FJQQexl.png?2" title="source: imgur.com" height="50px" /></a> Swagger Ui
 > Rota - http://localhost:3000/api/v1/api-docs/
 
 Testar a API Pelo Swagger Localmente
@@ -81,7 +81,7 @@ Testar a API Pelo Swagger Localmente
 
 ### ✅ Authenticate
 
-> Post- Validar email e senha http://localhost:3000/api/v1/authenticate
+> Post- Autenticar Usuário: `http://localhost:3000/api/v1/authenticate`
 
 ```bash
 {
@@ -90,7 +90,6 @@ Testar a API Pelo Swagger Localmente
 }
 ```
 
-
  ### 🚗🔐 Cars
  
  <p>
@@ -98,7 +97,8 @@ Testar a API Pelo Swagger Localmente
    então é necessário validar o usuário com a rota de autenticação a cima,para adquirir o token. 
  </p>
 
-> POST - Cadastrar Carro http://localhost:3000/api/v1/car
+> POST - Cadastrar Carro: `http://localhost:3000/api/v1/car`
+
 
 ```bash
 {
@@ -120,11 +120,11 @@ Testar a API Pelo Swagger Localmente
 
 ```
 
-> GET- Listar Todos os Veículos http://localhost:3000/api/v1/car
+> GET- Listar Todos os Veículos: `http://localhost:3000/api/v1/car`
 
-> GET- Listar um Veículo http://localhost:3000/api/v1/car/{id}
+> GET- Listar um Veículo: `http://localhost:3000/api/v1/car/{id}`
 
-> GET- Buscar por Query Params http://localhost:3000/api/v1/car?campo=busca
+> GET- Buscar por Query Params: `http://localhost:3000/api/v1/car?campo=busca`
 
 ```bash
 {
@@ -172,7 +172,7 @@ Testar a API Pelo Swagger Localmente
     "offset": 1
 ```
 
-> PUT- Atualizar Veículo http://localhost:3000/api/v1/car/{id}
+> PUT- Atualizar Veículo: `http://localhost:3000/api/v1/car/{id}`
 
 ```bash
 
@@ -190,7 +190,7 @@ Testar a API Pelo Swagger Localmente
 
 ```
 
-> PATCH- Atualizar Descrição de Veículo http://localhost:3000/api/v1/car/{id}/acessorios/{id-acessorio}
+> PATCH- Atualizar Descrição de Veículo: `http://localhost:3000/api/v1/car/{id}/acessorios/{id-acessorio}`
 
 ```bash
 {
@@ -201,12 +201,12 @@ Testar a API Pelo Swagger Localmente
 
 
 
-> Delete- Deletar Veículo http://localhost:3000/api/v1/car/{id}
+> Delete- Deletar Veículo: `http://localhost:3000/api/v1/car/{id}`
 
 
 ### 🧑🏻‍🤝‍🧑🏻 Peoples
 
-> POST- Cadastrar Pessoa http://localhost:3000/api/v1/people
+> POST- Cadastrar Pessoa: `http://localhost:3000/api/v1/people`
 
 ```bash
 {
@@ -219,12 +219,11 @@ Testar a API Pelo Swagger Localmente
 }
 ```
 
-> GET- Listar Todas as Pessoas http://localhost:3000/api/v1/people
+> GET- Listar Todas as Pessoas: `http://localhost:3000/api/v1/people`
 
-> GET- Listar uma Pessoa http://localhost:3000/api/v1/people/{id}
+> GET- Listar uma Pessoa: `http://localhost:3000/api/v1/people/{id}`
 
-> GET- Buscar por Query Params http://localhost:3000/api/v1/people?campo=busca
-
+> GET- Buscar por Query Params: `http://localhost:3000/api/v1/people?campo=busca`
 ```bash
 {
     "Pessoas": [
@@ -248,7 +247,7 @@ Testar a API Pelo Swagger Localmente
 
 ```
 
-> PUT - Atualizar Pessoa http://localhost:3000/api/v1/people/{id}
+> PUT - Atualizar Pessoa: `http://localhost:3000/api/v1/people/{id}`
 
 ```bash
 
@@ -262,12 +261,12 @@ Testar a API Pelo Swagger Localmente
 }
 ```
 
-> Delete- Deletar Pessoa http://localhost:3000/api/v1/people/{id}
+> Delete- Deletar Pessoa: `http://localhost:3000/api/v1/people/{id}`
 
 
 ### 🚘💰Locadoras
 
-> POST - Inserir Locadora http://localhost:3000/api/v1/rental
+> POST - Inserir Locadora: `http://localhost:3000/api/v1/rental`
 
 ```bash
 
@@ -286,11 +285,11 @@ Testar a API Pelo Swagger Localmente
 ```
 
 
-> GET- Listar Todas as Locadoras http://localhost:3000/api/v1/rental
+> GET- Listar Todas as Locadoras: `http://localhost:3000/api/v1/rental`
 
-> GET- Listar uma Locadora http://localhost:3000/api/v1/rental/{id}
+> GET- Listar uma Locadora: `http://localhost:3000/api/v1/rental/{id}`
 
-> GET- Buscar por Query Params http://localhost:3000/api/v1/rental?campo=busca
+> GET- Buscar por Query Params: `http://localhost:3000/api/v1/rental?campo=busca`
 
 
 ```bash
@@ -317,7 +316,7 @@ Testar a API Pelo Swagger Localmente
 ```
 
 
-> PUT - Atualizar Locadora http://localhost:3000/api/v1/rental/{id}
+> PUT - Atualizar Locadora: `http://localhost:3000/api/v1/rental/{id}`
 
 ```bash
 
@@ -336,4 +335,41 @@ Testar a API Pelo Swagger Localmente
 ```
 
 
-> Delete- Deletar Pessoa http://localhost:3000/api/v1/rental/{id}
+> Delete- Deletar Pessoa: `http://localhost:3000/api/v1/rental/{id}`
+
+## Autor
+
+<a href="https://imgur.com/aKAfCWo"><img src="https://i.imgur.com/aKAfCWo.jpg" title="source: imgur.com" height="130px"/></a>
+
+<a href="https://github.com/EdsoonJr">
+Edson de Araújo Junior 👨‍💻🚀
+</a>
+<p>
+  <a href="mailto:edsonjn2013@gmail.com">   
+	 <img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/gmail.svg" height=60px> </img>
+    </a>
+    <a href="https://www.instagram.com/edsoon.jr_/">
+        <img src="https://github.com/EdsoonJr/EdsoonJr/blob/main/instagram.svg" height=60px> </img>
+    </a>
+    <a href="https://www.linkedin.com/in/edson-junior-002170230/">
+	<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height=60px> </img>   
+    </a>
+</p>
+
+<p>
+ 📌API desenvolvida para atender a entrega do útilmo desafio do programa de bolsas da Compass Oul.
+ O qual fiz parte durante um período de 3 meses,atuando como estagiário, estudando e desenvolvendo 
+ API'S com Node Js.Períodos esses que foram de grande aprendizagem e crescimento profissional.
+ 
+ Fico muito feliz de ter chegado até aqui,idependete de qualquer coisa eu estou terminando esse 
+ programa de bolsas levando comigo uma bagagem enorme de tudo que adquiri nesses meses na compass,então
+ deixo aqui meus agradecimentos a toda a equipe do programa de bolsas de NodeJs que contribuiram para isso.
+ 
+</p>
+
+## 📝Licença 
+
+MIT <a href= https://github.com/EdsoonJr/CompassLisa-API/blob/main/LICENSE> LICENSE </a>
+
+
+

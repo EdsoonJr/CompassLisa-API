@@ -45,6 +45,18 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(400);
   });
 
+  it('Test Route  Post *INVALID URL*', async () => {
+    const result = await supertest(app).post('/api/v1/pessoas').send({
+      nome: 'Neymar o Brabo',
+      cpf: '00840974000',
+      data_nascimento: '26/03/2003',
+      email: 'neymarjrr@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(404);
+  });
+
   it('Test Route  Post *Already in use EMAIL*', async () => {
     const result = await supertest(app).post('/api/v1/people').send({
       nome: 'Neymar o Brabo',
@@ -205,9 +217,55 @@ describe('Test of all people routes', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Update *PEOPLE NOT FOUND*', async () => {
+    const result = await supertest(app).put(`/api/v1/people/620ecc92f744bb27b165d002`).send({
+      nome: 'Ronelson Beckerd',
+      cpf: '26984819008',
+      data_nascimento: '26/03/2003',
+      email: 'ronelson@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Update *INVALID ID*', async () => {
+    const result = await supertest(app).put(`/api/v1/people/620ecc92f744bb27b165d002invalid`).send({
+      nome: 'Ronelson Beckerd',
+      cpf: '26984819008',
+      data_nascimento: '26/03/2003',
+      email: 'ronelson@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(400);
+  });
+
+  it('Test Route Update *INVALID URL*', async () => {
+    const result = await supertest(app).put(`/api/v1/pessoas/${people.ppl._id}`).send({
+      nome: 'Ronelson Beckerd',
+      cpf: '26984819008',
+      data_nascimento: '26/03/2003',
+      email: 'ronelson@email.com',
+      senha: '654321',
+      habilitado: 'sim'
+    });
+    expect(result.statusCode).toBe(404);
+  });
+
   it('Test Route Delete', async () => {
     const result = await supertest(app).delete(`/api/v1/people/${people.ppl._id}`);
     expect(result.statusCode).toBe(204);
+  });
+
+  it('Test Route Delete *NOT FOUND*', async () => {
+    const result = await supertest(app).delete(`/api/v1/people/620ecc92f744bb27b165d002`);
+    expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Delete *Invalid URL*', async () => {
+    const result = await supertest(app).delete(`/api/v1/pessoas/${people.ppl._id}`);
+    expect(result.statusCode).toBe(404);
   });
 
   it('Test Route Delete *Invalid Id*', async () => {

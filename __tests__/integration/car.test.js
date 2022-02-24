@@ -193,6 +193,11 @@ describe('Test All Routes Cars', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Teste Route Get *UNAUTHORIZED*', async () => {
+    const result = await supertest(app).get('/api/v1/car');
+    expect(result.statusCode).toBe(401);
+  });
+
   it('Teste Route Get *INVALID URL*', async () => {
     const result = await supertest(app).get('/api/v1/caroos').set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(404);
@@ -229,9 +234,25 @@ describe('Test All Routes Cars', () => {
     expect(result.statusCode).toBe(200);
   });
 
+  it('Test Route Update  *UNAUTHORIZED*', async () => {
+    const result = await supertest(app).put(`/api/v1/car/${car.cr._id}`).send({
+      modelo: 'Range Rover ',
+      cor: 'Preta',
+      ano: '2020'
+    });
+    expect(result.statusCode).toBe(401);
+  });
+
   it('Test Route Delete', async () => {
     const result = await supertest(app).delete(`/api/v1/car/${car.cr._id}`).set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(204);
+  });
+
+  it('Test Route Delete *INVALID ID*', async () => {
+    const result = await supertest(app)
+      .delete(`/api/v1/car/620ece54f744bb27b165d527invaliddd`)
+      .set('authorization', `Bearer ${token}`);
+    expect(result.statusCode).toBe(400);
   });
 
   it('Test Route Delete *NOT FOUND DEL*', async () => {
@@ -239,5 +260,10 @@ describe('Test All Routes Cars', () => {
       .delete(`/api/v1/car/620ece54f744bb27b165d527`)
       .set('authorization', `Bearer ${token}`);
     expect(result.statusCode).toBe(404);
+  });
+
+  it('Test Route Delete *UNAUTHORIZED*', async () => {
+    const result = await supertest(app).delete(`/api/v1/car/${car.cr._id}`);
+    expect(result.statusCode).toBe(401);
   });
 });
