@@ -1,7 +1,7 @@
 ![Imgur](https://i.imgur.com/3qOYB8G.png)
 
 # ![Imgur](https://i.imgur.com/0oM48aB.png) Sobre a Compasso-Lisa
-🏁 Desafio Final-Part 2
+🏁 Desafio Final
 
 > Status: Finalizado ✅
 
@@ -357,13 +357,14 @@ Edson de Araújo Junior 👨‍💻🚀
 </p>
 
 <p>
- 📌API desenvolvida para atender a entrega do útilmo desafio do programa de bolsas da Compass Oul.
- O qual fiz parte durante um período de 3 meses,atuando como estagiário, estudando e desenvolvendo 
- API'S com Node Js.Períodos esses que foram de grande aprendizagem e crescimento profissional.
+ 📌API desenvolvida para atender a entrega do último desafio do programa de bolsas da Compass Oul.
+ O qual fiz parte durante um período de 3 meses, atuando como estagiário, estudando e desenvolvendo 
+ API'S com Node Js. Períodos esses que foram de grande aprendizagem e crescimento profissional.
  
- Fico muito feliz de ter chegado até aqui,idependete de qualquer coisa eu estou terminando esse 
- programa de bolsas levando comigo uma bagagem enorme de tudo que adquiri nesses meses na compass,então
- deixo aqui meus agradecimentos a toda a equipe do programa de bolsas de NodeJs que contribuiram para isso.
+ Fico muito feliz de ter chegado até aqui, independentemente de qualquer coisa eu estou terminando esse 
+ programa de bolsas levando comigo uma bagagem enorme de tudo que adquiri nesses meses na compass, então
+ deixo aqui meus agradecimentos a toda a equipe do programa de bolsas de NodeJs que contribuíram para isso.
+
  
 </p>
 
